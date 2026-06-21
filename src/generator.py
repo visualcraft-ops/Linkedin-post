@@ -174,8 +174,8 @@ def get_person_id():
     return r.json()["sub"]
 
 
-def publish_to_linkedin(content):
-    """Publish post to LinkedIn personal profile."""
+def publish_to_linkedin(content, poll_data=None):
+    """Publish post to LinkedIn. Supports text posts and polls."""
     if not LINKEDIN_TOKEN:
         print("⚠️ LINKEDIN_TOKEN not set — skipping auto-publish")
         return False
@@ -196,6 +196,14 @@ def publish_to_linkedin(content):
             "lifecycleState": "PUBLISHED",
             "isReshareDisabledByAuthor": False,
         }
+        if poll_data:
+            body["content"] = {
+                "poll": {
+                    "question": poll_data["question"][:140],
+                    "options": [{"text": opt[:30]} for opt in poll_data["options"][:4]],
+                    "settings": {"duration": "THREE_DAYS"},
+                }
+            }
         r = requests.post("https://api.linkedin.com/rest/posts",
                           headers=headers, json=body, timeout=30)
         if r.status_code == 401:
@@ -204,11 +212,91 @@ def publish_to_linkedin(content):
         if not r.ok:
             print(f"❌ LinkedIn post failed: {r.status_code} {r.text}")
             return False
-        print("✅ Successfully published to LinkedIn!")
+        print(f"✅ Successfully published {'poll' if poll_data else 'post'} to LinkedIn!")
         return True
     except Exception as e:
         print(f"❌ LinkedIn publishing error: {e}")
         return False
+
+
+POLL_TEMPLATES = [
+    {
+        "commentary": "Every retailer debates this. Let's settle it 👇\n\nWhat drives MORE footfall to a store?\n\n#RetailStrategy #VisualMerchandising #StoreOperations #RetailPoll",
+        "question": "What drives more footfall?",
+        "options": ["Window displays", "Social media ads", "Word of mouth", "Location & visibility"],
+    },
+    {
+        "commentary": "Honest answers only! 🙌\n\nAs an HR professional, what's YOUR biggest hiring challenge in retail?\n\n#HRCommunity #Recruitment #RetailHR #TalentAcquisition",
+        "question": "Biggest hiring challenge in retail?",
+        "options": ["High attrition rate", "Finding skilled staff", "Budget constraints", "Cultural fit"],
+    },
+    {
+        "commentary": "This is the eternal retail debate 🔥\n\nWhat matters MORE for a new store launch?\n\n#StoreOperations #RetailExcellence #NewStoreLaunch #RetailPoll",
+        "question": "Most critical for store launch success?",
+        "options": ["Perfect VM displays", "Well-trained team", "Strong marketing", "Prime location"],
+    },
+    {
+        "commentary": "Career growth in retail is unique. Where do YOU focus? 👇\n\n#CareerGrowth #RetailCareers #Leadership #ProfessionalDevelopment",
+        "question": "Best skill for career growth in retail?",
+        "options": ["People management", "Visual merchandising", "Data & analytics", "Customer experience"],
+    },
+    {
+        "commentary": "Employee engagement doesn't need a massive budget 💡\n\nWhat keeps retail teams motivated the most?\n\n#EmployeeEngagement #TeamBuilding #WorkplaceCulture #RetailHR",
+        "question": "What motivates retail teams most?",
+        "options": ["Recognition & praise", "Growth opportunities", "Flexible schedules", "Team bonding events"],
+    },
+    {
+        "commentary": "VM professionals — this one's for you! 🎨\n\nWhat's the #1 element that makes a window display stop traffic?\n\n#VisualMerchandising #RetailDisplay #WindowDisplay #VMTips",
+        "question": "What makes a window display irresistible?",
+        "options": ["Bold lighting", "Minimalist design", "Storytelling theme", "Color psychology"],
+    },
+    {
+        "commentary": "The retail industry is evolving fast 🚀\n\nWhich trend will dominate retail in 2027?\n\n#RetailTrends #FutureOfWork #Innovation #RetailTech",
+        "question": "Which trend will dominate retail next?",
+        "options": ["AI-powered VM", "Experiential stores", "Sustainability focus", "Omnichannel fusion"],
+    },
+    {
+        "commentary": "Onboarding can make or break a new hire's experience 🎯\n\nWhat's the most important part of the first week?\n\n#Onboarding #HRTips #EmployeeExperience #PeopleFirst",
+        "question": "Most important in first-week onboarding?",
+        "options": ["Buddy/mentor system", "Brand immersion", "Clear role clarity", "Team introductions"],
+    },
+]
+
+
+def build_poll_prompt(topic):
+    """Build Gemini prompt to generate a poll."""
+    return f"""You are a LinkedIn content creator for Preethi Prasanna (8+ years in Visual Merchandising, Store Operations, transitioning to HR).
+
+Generate a LinkedIn POLL about: {topic}
+
+Requirements:
+- Write a short commentary (2-3 lines, engaging, ends with a CTA to vote)
+- Write a poll question (max 140 chars)
+- Write exactly 4 poll options (max 30 chars each)
+- Include 4 relevant hashtags in the commentary
+- Tone: Professional, engaging, authentic
+
+Output EXACTLY in this JSON format (no other text):
+{{"commentary": "Your engaging intro text with hashtags", "question": "Your poll question?", "options": ["Option 1", "Option 2", "Option 3", "Option 4"]}}"""
+
+
+def generate_poll(topic):
+    """Generate poll content — try Gemini, fallback to templates."""
+    try:
+        prompt = build_poll_prompt(topic)
+        raw = generate_with_gemini(prompt)
+        # Parse JSON from response
+        raw = raw.strip()
+        if raw.startswith("```"):
+            raw = raw.split("\n", 1)[1].rsplit("```", 1)[0]
+        poll = json.loads(raw)
+        if "question" in poll and "options" in poll and len(poll["options"]) >= 2:
+            print("✅ Poll generated with Gemini AI")
+            return poll
+    except Exception as e:
+        print(f"⚠️ Gemini poll generation failed ({e}), using template")
+
+    return random.choice(POLL_TEMPLATES)
 
 
 def main():
@@ -222,27 +310,38 @@ def main():
 
     print(f"📅 Today's topic: {topic} | Style: {style}")
 
-    # Try Gemini first, fallback to templates
-    content = None
-    try:
-        prompt = build_prompt(topic, style)
-        content = generate_with_gemini(prompt)
-        print("✅ Generated with Gemini AI")
-    except Exception as e:
-        print(f"⚠️ Gemini unavailable ({e}), using templates")
-        content = generate_fallback(topic, style)
+    # Check if today is a poll day (Wednesday = Engagement day, or randomly 2x/week)
+    is_poll_day = (style == "Poll / Question") or (date.today().weekday() in [5] and random.random() < 0.5)
 
-    # Check duplicates
-    if is_duplicate(content, history):
-        print("🔄 Duplicate detected, regenerating...")
-        content = generate_fallback(topic, style)
+    if is_poll_day:
+        print("📊 Generating a LinkedIn POLL today!")
+        poll_data = generate_poll(topic)
+        content = poll_data.get("commentary", "Share your thoughts! 👇")
 
-    # Save post
-    filepath = save_post(content, topic, style)
-    print(f"💾 Post saved: {filepath.name}")
+        # Save post
+        filepath = save_post(content + f"\n\n[POLL: {poll_data['question']}]\nOptions: {' | '.join(poll_data['options'])}", topic, "Poll")
+        print(f"💾 Poll saved: {filepath.name}")
 
-    # Publish to LinkedIn
-    published = publish_to_linkedin(content)
+        # Publish poll
+        published = publish_to_linkedin(content, poll_data)
+    else:
+        # Regular text post
+        content = None
+        try:
+            prompt = build_prompt(topic, style)
+            content = generate_with_gemini(prompt)
+            print("✅ Generated with Gemini AI")
+        except Exception as e:
+            print(f"⚠️ Gemini unavailable ({e}), using templates")
+            content = generate_fallback(topic, style)
+
+        if is_duplicate(content, history):
+            print("🔄 Duplicate detected, regenerating...")
+            content = generate_fallback(topic, style)
+
+        filepath = save_post(content, topic, style)
+        print(f"💾 Post saved: {filepath.name}")
+        published = publish_to_linkedin(content)
 
     # Update history
     content_hash = hashlib.md5(content.encode()).hexdigest()
@@ -253,15 +352,18 @@ def main():
         "file": filepath.name,
         "hash": content_hash,
         "published": published,
+        "type": "poll" if is_poll_day else "text",
     })
     history["hashes"].append(content_hash)
     save_history(history)
 
-    # Print the post
     print("\n" + "=" * 50)
-    print("📝 TODAY'S LINKEDIN POST:")
+    print(f"📝 TODAY'S LINKEDIN {'POLL' if is_poll_day else 'POST'}:")
     print("=" * 50)
     print(content)
+    if is_poll_day:
+        print(f"\n📊 Question: {poll_data['question']}")
+        print(f"   Options: {' | '.join(poll_data['options'])}")
     print("=" * 50)
 
     return content
