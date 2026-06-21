@@ -1,1 +1,15 @@
-{"posts": [], "hashes": []}
+{
+  "posts": [
+    {
+      "date": "2026-06-21",
+      "topic": "Industry Trends",
+      "style": "Weekly Roundup",
+      "file": "2026-06-21_industry-trends.md",
+      "hash": "3b0100909238f1608b64de5b9ca0f83d",
+      "published": true
+    }
+  ],
+  "hashes": [
+    "3b0100909238f1608b64de5b9ca0f83d"
+  ]
+}
