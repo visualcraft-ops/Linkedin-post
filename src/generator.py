@@ -322,10 +322,10 @@ def get_person_id():
 
 
 def publish_to_linkedin(content, poll_data=None):
-    """Publish post or poll to LinkedIn."""
+    """Publish post or poll to LinkedIn. Returns post URN on success."""
     if not LINKEDIN_TOKEN:
         print("⚠️ LINKEDIN_TOKEN not set — skipping publish")
-        return False
+        return None
 
     try:
         person_id = get_person_id()
@@ -355,15 +355,16 @@ def publish_to_linkedin(content, poll_data=None):
                           headers=headers, json=body, timeout=30)
         if r.status_code == 401:
             print("❌ Token expired! Regenerate with get_token.py")
-            return False
+            return None
         if not r.ok:
             print(f"❌ Post failed: {r.status_code} {r.text}")
-            return False
-        print(f"✅ Published {'poll' if poll_data else 'post'} to LinkedIn!")
-        return True
+            return None
+        post_urn = r.headers.get("x-restli-id", "")
+        print(f"✅ Published {'poll' if poll_data else 'post'} to LinkedIn! URN: {post_urn}")
+        return post_urn
     except Exception as e:
         print(f"❌ Publishing error: {e}")
-        return False
+        return None
 
 
 def build_poll_prompt(topic):
@@ -396,6 +397,107 @@ def generate_poll(topic):
     return random.choice(POLL_TEMPLATES)
 
 
+# ============================================================
+# SMART TAGGING — Mention relevant creators for visibility
+# ============================================================
+
+CREATOR_TAGS = {
+    "Visual Merchandising": [
+        "Retail design enthusiasts",
+        "VM community",
+        "Store designers and merchandisers",
+    ],
+    "HR & People Management": [
+        "HR leaders in retail",
+        "People-first leaders",
+        "Talent acquisition community",
+    ],
+    "Store Operations": [
+        "Retail ops professionals",
+        "Store managers",
+        "Retail leaders",
+    ],
+    "Career & Leadership": [
+        "Career coaches",
+        "Women in retail leadership",
+        "Professional development community",
+    ],
+    "Employee Engagement": [
+        "People & culture leaders",
+        "Workplace culture advocates",
+        "Employee experience community",
+    ],
+}
+
+
+def add_engagement_tag(content, topic):
+    """Add a subtle community callout to boost reach."""
+    tags = CREATOR_TAGS.get(topic, CREATOR_TAGS.get("Career & Leadership", []))
+    if tags and random.random() < 0.6:  # 60% of posts get a tag line
+        tag = random.choice(tags)
+        callouts = [
+            f"\n\n🔔 {tag} — what's your take?",
+            f"\n\nCalling all {tag.lower()} 👆",
+            f"\n\n💬 {tag}, I'd love your perspective.",
+        ]
+        content += random.choice(callouts)
+    return content
+
+
+# ============================================================
+# SELF-COMMENT BOOST — Algorithm hack
+# ============================================================
+
+BOOST_COMMENTS = [
+    "Curious to hear from people who've been in retail 5+ years — has this changed for you?",
+    "Also worth noting: this applies differently in tier-1 vs tier-2 cities. Would love to hear regional perspectives.",
+    "For anyone starting in retail — bookmark this. I wish someone told me this on day 1.",
+    "The responses here are gold 🙌 Keep them coming — learning from all of you.",
+    "Follow-up thought: the best part about sharing here is realizing how many of us face the same challenges daily.",
+    "Retail friends — tag someone who needs to see this today 👇",
+    "This sparked a great conversation in my DMs too. If you want to discuss further, feel free to connect!",
+    "Adding context: this is based on my experience in premium retail (Portico, lifestyle brands). May differ for value retail.",
+    "Quick clarification from the comments — yes, this works for both large format and standalone stores.",
+    "Loving the different perspectives here! The retail community on LinkedIn is genuinely one of the best 🙌",
+]
+
+
+def post_self_comment(post_urn):
+    """Post a follow-up comment on own post to boost engagement."""
+    if not LINKEDIN_TOKEN or not post_urn:
+        return False
+
+    try:
+        import time
+        time.sleep(30)  # Wait 30 seconds before commenting (looks natural)
+
+        person_id = get_person_id()
+        headers = {
+            "Authorization": f"Bearer {LINKEDIN_TOKEN}",
+            "Content-Type": "application/json",
+            "X-Restli-Protocol-Version": "2.0.0",
+            "LinkedIn-Version": LINKEDIN_VERSION,
+        }
+
+        comment_text = random.choice(BOOST_COMMENTS)
+        body = {
+            "actor": f"urn:li:person:{person_id}",
+            "object": post_urn,
+            "message": {"text": comment_text},
+        }
+        r = requests.post("https://api.linkedin.com/rest/socialActions/{}/comments".format(post_urn),
+                          headers=headers, json=body, timeout=30)
+        if r.ok or r.status_code == 201:
+            print(f"💬 Self-comment posted: '{comment_text[:50]}...'")
+            return True
+        else:
+            print(f"⚠️ Comment failed: {r.status_code} {r.text}")
+            return False
+    except Exception as e:
+        print(f"⚠️ Comment error: {e}")
+        return False
+
+
 def main():
     GENERATED_DIR.mkdir(parents=True, exist_ok=True)
     PUBLISHED_DIR.mkdir(parents=True, exist_ok=True)
@@ -414,7 +516,7 @@ def main():
         poll_data = generate_poll(topic)
         content = poll_data.get("commentary", "Share your thoughts! 👇")
         filepath = save_post(content + f"\n\n[POLL: {poll_data['question']}]\n{chr(10).join(poll_data['options'])}", topic, "poll")
-        published = publish_to_linkedin(content, poll_data)
+        post_urn = publish_to_linkedin(content, poll_data)
     else:
         try:
             content = generate_with_gemini(build_prompt(topic, style))
@@ -427,11 +529,20 @@ def main():
             print("🔄 Duplicate detected, using fallback")
             content = generate_fallback(topic, style)
 
+        # Add smart community tag
+        content = add_engagement_tag(content, topic)
+
         filepath = save_post(content, topic, style)
-        published = publish_to_linkedin(content)
+        post_urn = publish_to_linkedin(content)
         poll_data = None
 
+    # Self-comment boost (only on morning posts, 70% of the time)
+    if post_urn and POST_SESSION == "morning" and random.random() < 0.7:
+        print("💬 Adding self-comment boost...")
+        post_self_comment(post_urn)
+
     # Update history
+    published = post_urn is not None
     history["posts"].append({
         "date": date.today().isoformat(),
         "session": POST_SESSION,
@@ -440,6 +551,7 @@ def main():
         "file": filepath.name,
         "hash": hashlib.md5(content.encode()).hexdigest(),
         "published": published,
+        "post_urn": post_urn or "",
         "type": "poll" if is_poll else "text",
     })
     history["hashes"].append(hashlib.md5(content.encode()).hexdigest())
