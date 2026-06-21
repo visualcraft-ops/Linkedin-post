@@ -1,23 +1,22 @@
 ---
 date: 2026-06-21
 topic: Industry Trends
-style: Weekly Roundup
-status: generated
+style: future_prediction
+session: morning
 ---
 
-Retail in 2026 is unrecognizable from 2020.
+Coffee's ready ☕ Here's your Monday industry trends reminder:
 
-→ AI-powered planograms
-→ Digital-first VM strategies
-→ Experiential stores over transactional ones
-→ HR tech automating onboarding
-→ Employee experience = Customer experience
+1. Your team mirrors your energy (check yours first)
+2. One small display change > zero changes while waiting for 'the big revamp'
+3. Ask your newest team member what confuses them (they see what you've normalized)
+4. Document what works (future you will thank present you)
 
-The retailers who'll win aren't just adapting.
-They're building teams that can adapt continuously.
+Simple? Yes.
+Does everyone do it? No.
 
-That's why HR in retail is more important than ever.
+That's the edge.
 
-What trend excites you most about retail's future? 👇
+Which one are you doing this week? 👇
 
-#RetailTrends #FutureOfWork #HRTrends #Innovation #DigitalTransformation
+#RetailLeadership #StoreOperations #RetailTips #MondayMotivation
