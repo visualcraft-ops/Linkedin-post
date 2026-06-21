@@ -5,18 +5,22 @@ style: future_prediction
 session: morning
 ---
 
-Coffee's ready ☕ Here's your Monday industry trends reminder:
+Real talk about industry trends.
 
-1. Your team mirrors your energy (check yours first)
-2. One small display change > zero changes while waiting for 'the big revamp'
-3. Ask your newest team member what confuses them (they see what you've normalized)
-4. Document what works (future you will thank present you)
+Nobody posts about the failures. So let me go first.
 
-Simple? Yes.
-Does everyone do it? No.
+I once spent 3 days perfecting a store display.
+Customers walked past it without a second glance.
 
-That's the edge.
+The fix? I asked a customer what they were looking for.
+Rebuilt the display around THEIR journey in 2 hours.
 
-Which one are you doing this week? 👇
+Result: 35% increase in dwell time.
 
-#RetailLeadership #StoreOperations #RetailTips #MondayMotivation
+Lesson: We design for Instagram. We should design for customers.
+
+What's a retail fail that taught you something? 👇
+
+#RetailLearning #VisualMerchandising #CustomerFirst #RetailTips
+
+💬 Professional development community, I'd love your perspective.
