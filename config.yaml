@@ -1,0 +1,37 @@
+# LinkedIn Post Generator Configuration
+
+profile:
+  name: "Preethi Prasanna"
+  experience: "8+ years"
+  domain: "Visual Merchandising, Store Operations, HR"
+  location: "Bengaluru, India"
+
+schedule:
+  # Post generation time (IST)
+  time: "07:00"
+  timezone: "Asia/Kolkata"
+
+content:
+  # Max words per post
+  max_words: 250
+  min_words: 150
+  # Emoji usage (low/medium/high)
+  emoji_level: "low"
+  # Tone: professional, casual, inspirational
+  tone: "professional"
+
+ai:
+  # Primary: gemini, openai, claude
+  provider: "gemini"
+  model: "gemini-2.0-flash"
+  # Creativity (0.0 = focused, 1.0 = creative)
+  temperature: 0.8
+
+calendar:
+  monday: { topic: "Visual Merchandising", style: "Tips & Best Practices" }
+  tuesday: { topic: "HR & Recruitment", style: "Thought Leadership" }
+  wednesday: { topic: "Engagement", style: "Poll / Question" }
+  thursday: { topic: "Store Operations", style: "Case Study / Story" }
+  friday: { topic: "Career & Leadership", style: "Personal Insight" }
+  saturday: { topic: "Employee Engagement", style: "Quick Tip" }
+  sunday: { topic: "Industry Trends", style: "Weekly Roundup" }
