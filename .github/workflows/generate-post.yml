@@ -30,9 +30,10 @@ jobs:
       - name: Install dependencies
         run: pip install google-generativeai==0.8.3
 
-      - name: Generate LinkedIn post
+      - name: Generate and publish LinkedIn post
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          LINKEDIN_TOKEN: ${{ secrets.LINKEDIN_TOKEN }}
         run: python src/generator.py
 
       - name: Commit and push generated post

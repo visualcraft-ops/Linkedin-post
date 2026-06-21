@@ -1,8 +1,9 @@
-"""LinkedIn Post Generator using Google Gemini AI."""
+"""LinkedIn Post Generator using Google Gemini AI + Auto-Publish."""
 import os
 import json
 import random
 import hashlib
+import requests
 from datetime import datetime, date
 from pathlib import Path
 
@@ -15,6 +16,9 @@ CONTENT_DIR = Path(__file__).parent.parent / "content"
 GENERATED_DIR = CONTENT_DIR / "generated"
 PUBLISHED_DIR = CONTENT_DIR / "published"
 HISTORY_FILE = CONTENT_DIR / "history.json"
+
+LINKEDIN_TOKEN = os.environ.get("LINKEDIN_TOKEN")
+LINKEDIN_VERSION = "202506"
 
 CONTENT_CALENDAR = {
     0: {"topic": "Visual Merchandising", "style": "Tips & Best Practices"},
@@ -160,6 +164,53 @@ status: generated
     return filepath
 
 
+def get_person_id():
+    """Get LinkedIn person ID from token."""
+    r = requests.get("https://api.linkedin.com/v2/userinfo",
+                     headers={"Authorization": f"Bearer {LINKEDIN_TOKEN}"},
+                     timeout=30)
+    if not r.ok:
+        raise RuntimeError(f"Failed to get person ID: {r.status_code} {r.text}")
+    return r.json()["sub"]
+
+
+def publish_to_linkedin(content):
+    """Publish post to LinkedIn personal profile."""
+    if not LINKEDIN_TOKEN:
+        print("⚠️ LINKEDIN_TOKEN not set — skipping auto-publish")
+        return False
+
+    try:
+        person_id = get_person_id()
+        headers = {
+            "Authorization": f"Bearer {LINKEDIN_TOKEN}",
+            "Content-Type": "application/json",
+            "X-Restli-Protocol-Version": "2.0.0",
+            "LinkedIn-Version": LINKEDIN_VERSION,
+        }
+        body = {
+            "author": f"urn:li:person:{person_id}",
+            "commentary": content,
+            "visibility": "PUBLIC",
+            "distribution": {"feedDistribution": "MAIN_FEED", "targetEntities": [], "thirdPartyDistributionChannels": []},
+            "lifecycleState": "PUBLISHED",
+            "isReshareDisabledByAuthor": False,
+        }
+        r = requests.post("https://api.linkedin.com/rest/posts",
+                          headers=headers, json=body, timeout=30)
+        if r.status_code == 401:
+            print("❌ LinkedIn token expired! Regenerate using get_token.py")
+            return False
+        if not r.ok:
+            print(f"❌ LinkedIn post failed: {r.status_code} {r.text}")
+            return False
+        print("✅ Successfully published to LinkedIn!")
+        return True
+    except Exception as e:
+        print(f"❌ LinkedIn publishing error: {e}")
+        return False
+
+
 def main():
     GENERATED_DIR.mkdir(parents=True, exist_ok=True)
     PUBLISHED_DIR.mkdir(parents=True, exist_ok=True)
@@ -190,6 +241,9 @@ def main():
     filepath = save_post(content, topic, style)
     print(f"💾 Post saved: {filepath.name}")
 
+    # Publish to LinkedIn
+    published = publish_to_linkedin(content)
+
     # Update history
     content_hash = hashlib.md5(content.encode()).hexdigest()
     history["posts"].append({
@@ -198,6 +252,7 @@ def main():
         "style": style,
         "file": filepath.name,
         "hash": content_hash,
+        "published": published,
     })
     history["hashes"].append(content_hash)
     save_history(history)
