@@ -284,7 +284,10 @@ def generate_with_gemini(prompt):
     genai.configure(api_key=api_key)
     model = genai.GenerativeModel("gemini-2.0-flash")
     response = model.generate_content(prompt)
-    return response.text.strip()
+    text = response.text.strip()
+    if not text or len(text) < 50:
+        raise ValueError(f"Gemini returned empty/too-short response: '{text[:100]}'")
+    return text
 
 
 def generate_fallback(topic, style):
@@ -293,7 +296,7 @@ def generate_fallback(topic, style):
         f"Stop scrolling.\n\nIf you're in retail, this will save you hours.\n\nAfter 5+ store launches, here's my cheat sheet for {topic.lower()}:\n\n→ Start with your customer's eye level\n→ Change displays every 14 days (not when you feel like it)\n→ Train your team on WHY, not just HOW\n→ Measure footfall before/after every change\n\nThe stores that win aren't doing anything revolutionary.\nThey're doing the basics consistently.\n\nWhich one do you struggle with most? 👇\n\n#VisualMerchandising #RetailOperations #StoreManagement #RetailTips",
         f"The biggest myth in retail?\n\n'Good VM sells itself.'\n\nNo. Good VM + trained staff + right energy = sales.\n\nI've seen stores with stunning displays and zero conversions.\nI've seen stores with basic VM but incredible teams crushing targets.\n\nThe difference isn't the display.\nIt's the team behind it.\n\n{topic} is a team sport. Build accordingly.\n\nAgree? Disagree? Tell me 👇\n\n#RetailExcellence #TeamBuilding #VisualMerchandising #StoreOperations",
         f"Real talk about {topic.lower()}.\n\nNobody posts about the failures. So let me go first.\n\nI once spent 3 days perfecting a store display.\nCustomers walked past it without a second glance.\n\nThe fix? I asked a customer what they were looking for.\nRebuilt the display around THEIR journey in 2 hours.\n\nResult: 35% increase in dwell time.\n\nLesson: We design for Instagram. We should design for customers.\n\nWhat's a retail fail that taught you something? 👇\n\n#RetailLearning #VisualMerchandising #CustomerFirst #RetailTips",
-        f"Coffee's ready ☕ Here's your Monday {topic.lower()} reminder:\n\n1. Your team mirrors your energy (check yours first)\n2. One small display change > zero changes while waiting for 'the big revamp'\n3. Ask your newest team member what confuses them (they see what you've normalized)\n4. Document what works (future you will thank present you)\n\nSimple? Yes.\nDoes everyone do it? No.\n\nThat's the edge.\n\nWhich one are you doing this week? 👇\n\n#RetailLeadership #StoreOperations #RetailTips #MondayMotivation",
+        f"Here's a {topic.lower()} reminder that costs ₹0:\n\n1. Your team mirrors your energy (check yours first)\n2. One small display change > zero changes while waiting for 'the big revamp'\n3. Ask your newest team member what confuses them (they see what you've normalized)\n4. Document what works (future you will thank present you)\n\nSimple? Yes.\nDoes everyone do it? No.\n\nThat's the edge.\n\nWhich one are you implementing this week? 👇\n\n#RetailLeadership #StoreOperations #RetailTips #RetailExcellence",
         f"Quiet confession from 8 years in retail:\n\nThe best store I ever managed wasn't the most beautiful one.\n\nIt was the one where:\n→ Every team member greeted by name\n→ The stockroom was organized (not just the floor)\n→ We celebrated small wins loudly\n→ Training happened daily, not quarterly\n\nRetail success isn't a visual. It's a feeling.\n\nYour customers feel what your team feels.\n\nBuild the team first. The aesthetics follow.\n\nWhat made YOUR best store 'the best'? 👇\n\n#RetailExcellence #TeamCulture #StoreOperations #EmployeeEngagement",
     ]
     return random.choice(templates)
