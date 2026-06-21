@@ -2,8 +2,7 @@ name: Evening LinkedIn Post
 
 on:
   schedule:
-    # Runs daily at 6:00 PM IST (12:30 PM UTC)
-    - cron: '30 12 * * *'
+    - cron: '30 12 * * *'  # 6:00 PM IST (12:30 PM UTC)
   workflow_dispatch:
 
 permissions:
@@ -17,13 +16,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Random delay (0-30 min)
+        run: sleep $((RANDOM % 1800))
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install google-generativeai==0.8.3 requests>=2.31.0
+        run: pip install google-genai requests
 
       - name: Generate and publish evening post
         env:

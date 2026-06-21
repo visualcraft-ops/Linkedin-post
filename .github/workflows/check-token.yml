@@ -1,0 +1,31 @@
+name: Check LinkedIn Token
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'  # Every Monday at 11:30 AM IST
+  workflow_dispatch:
+
+jobs:
+  check-token:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Verify LinkedIn token is valid
+        env:
+          LINKEDIN_TOKEN: ${{ secrets.LINKEDIN_TOKEN }}
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            -H "Authorization: Bearer $LINKEDIN_TOKEN" \
+            "https://api.linkedin.com/v2/userinfo")
+
+          if [ "$STATUS" = "401" ]; then
+            echo "❌ TOKEN EXPIRED! Please regenerate at:"
+            echo "   Run get_token.py locally and update LINKEDIN_TOKEN secret"
+            echo "   https://github.com/visualcraft-ops/Linkedin-post/settings/secrets/actions"
+            exit 1
+          elif [ "$STATUS" = "200" ]; then
+            echo "✅ LinkedIn token is valid"
+          else
+            echo "⚠️ Unexpected status: $STATUS"
+            exit 1
+          fi
