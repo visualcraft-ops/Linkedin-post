@@ -1,4 +1,4 @@
-"""LinkedIn Post Generator using Google Gemini AI + Auto-Publish."""
+"""LinkedIn Post Generator — Auto-generates and publishes viral-worthy content."""
 import os
 import json
 import random
@@ -19,39 +19,194 @@ HISTORY_FILE = CONTENT_DIR / "history.json"
 
 LINKEDIN_TOKEN = os.environ.get("LINKEDIN_TOKEN")
 LINKEDIN_VERSION = "202506"
+POST_SESSION = os.environ.get("POST_SESSION", "morning")
 
-CONTENT_CALENDAR = {
-    0: {"topic": "Visual Merchandising", "style": "Tips & Best Practices"},
-    1: {"topic": "HR & Recruitment", "style": "Thought Leadership"},
-    2: {"topic": "Engagement", "style": "Poll / Question"},
-    3: {"topic": "Store Operations", "style": "Case Study / Story"},
-    4: {"topic": "Career & Leadership", "style": "Personal Insight"},
-    5: {"topic": "Employee Engagement", "style": "Quick Tip"},
-    6: {"topic": "Industry Trends", "style": "Weekly Roundup"},
+# ============================================================
+# CONTENT STRATEGY — Morning: Professional | Evening: Engaging
+# ============================================================
+
+MORNING_CALENDAR = {
+    0: {"topic": "Visual Merchandising", "style": "actionable_tips"},
+    1: {"topic": "HR & People Management", "style": "thought_leadership"},
+    2: {"topic": "Store Operations", "style": "case_study"},
+    3: {"topic": "Career & Leadership", "style": "personal_story"},
+    4: {"topic": "Employee Engagement", "style": "framework"},
+    5: {"topic": "Retail Strategy", "style": "contrarian_take"},
+    6: {"topic": "Industry Trends", "style": "future_prediction"},
 }
+
+EVENING_CALENDAR = {
+    0: {"topic": "Quick VM Tip", "style": "micro_content"},
+    1: {"topic": "HR Hot Take", "style": "debate_starter"},
+    2: {"topic": "Retail Life", "style": "relatable_story"},
+    3: {"topic": "Career Advice", "style": "poll"},
+    4: {"topic": "Team Culture", "style": "gratitude_post"},
+    5: {"topic": "Weekend Wisdom", "style": "listicle"},
+    6: {"topic": "Week Ahead", "style": "poll"},
+}
+
+# ============================================================
+# VIRAL HOOKS — First 2 lines are everything on LinkedIn
+# ============================================================
+
+HOOKS = {
+    "actionable_tips": [
+        "Stop doing this with your store displays.\n\nI see it everywhere →",
+        "3 VM changes that increased our footfall by 40%.\n\nNone of them cost money →",
+        "Your mannequins are lying to customers.\n\nHere's what I mean →",
+        "I set up 5 stores this year. Same mistake in all of them at first →",
+        "The window display formula that works every single time →",
+    ],
+    "thought_leadership": [
+        "HR in retail is broken.\n\nHere's what nobody wants to admit →",
+        "We hire for experience. We should hire for energy.\n\nLet me explain →",
+        "The real reason retail attrition is 60%+?\n\nIt's not the salary →",
+        "I've onboarded 100+ retail staff. The ones who stayed all had ONE thing in common →",
+        "Unpopular opinion: Most retail training programs are a waste of time.\n\nHere's why →",
+    ],
+    "case_study": [
+        "Day 1 of a new store launch.\n\nEverything that can go wrong, did →",
+        "We had 48 hours to redesign an entire store. Here's what happened →",
+        "A ₹200 change in our display increased sales by 25%.\n\nThe story →",
+        "The store was losing ₹3L/month. One operational change fixed it →",
+        "I inherited a team that hated their jobs. 90 days later, zero attrition.\n\nHere's the playbook →",
+    ],
+    "personal_story": [
+        "8 years ago, I was arranging mannequins.\n\nToday I build retail teams.\n\nHere's the messy middle →",
+        "My worst day in retail taught me my best lesson →",
+        "I almost quit retail in 2019.\n\nGlad I didn't. Here's what changed →",
+        "Nobody in my family understood what 'Visual Merchandising' meant.\n\nNow they do →",
+        "The feedback that changed my entire career trajectory →",
+    ],
+    "framework": [
+        "My 3-step framework for building engaged retail teams:\n\n(Steal this) →",
+        "The CARE framework I use for employee onboarding:\n\nC.A.R.E. →",
+        "How I run a store launch in 30 days (step-by-step) →",
+        "The 5-5-5 rule that keeps my team motivated:\n\n5 minutes, 5 words, 5 days →",
+        "Want a high-performing store team? Use this matrix →",
+    ],
+    "contrarian_take": [
+        "Hot take: Beautiful stores with bad teams will ALWAYS lose.\n\nFight me on this →",
+        "Controversial: VM is not about making things 'look pretty'.\n\nIt's about →",
+        "Everyone's obsessed with digital. I think physical retail will win.\n\nHere's my case →",
+        "Stop blaming Gen Z for retail attrition.\n\nThe problem is YOUR onboarding →",
+        "The 'customer is always right' is destroying retail teams.\n\nHere's a better approach →",
+    ],
+    "future_prediction": [
+        "Retail in 2030 will look NOTHING like today.\n\n5 predictions →",
+        "3 retail roles that won't exist in 5 years.\n\nAnd 3 new ones that will →",
+        "AI is coming for VM. But not how you think →",
+        "The future of HR in retail isn't human.\n\nOr is it? 🤔 →",
+        "Physical stores aren't dying. They're evolving into something bigger →",
+    ],
+    "micro_content": [
+        "Quick VM tip that takes 2 minutes ⚡\n\n→",
+        "One thing I do every Monday that transforms the week →",
+        "The smallest change with the biggest impact in any store →",
+        "60-second store audit trick I use every single day →",
+    ],
+    "debate_starter": [
+        "Agree or disagree?\n\n→",
+        "I said this in a meeting and the room went silent →",
+        "This might be my most controversial retail opinion →",
+        "Tell me I'm wrong about this →",
+    ],
+    "relatable_story": [
+        "Retail life. Nobody tells you about these moments →",
+        "When the delivery arrives 30 mins before store opening 😅\n\nRetail people, you know →",
+        "That moment when the customer asks for something you JUST moved from the display →",
+        "Retail managers on a Monday vs Friday.\n\nA thread →",
+    ],
+    "gratitude_post": [
+        "Shoutout to every retail team member who →",
+        "The unsung heroes of retail are the people who →",
+        "Something I don't say enough to my team →",
+    ],
+    "listicle": [
+        "7 things I learned this week in retail →",
+        "5 books that made me a better retail leader →",
+        "4 habits of the best store managers I've worked with →",
+    ],
+    "poll": [],
+}
+
+# ============================================================
+# POLL TEMPLATES
+# ============================================================
+
+POLL_TEMPLATES = [
+    {
+        "commentary": "Every retailer debates this. Let's settle it 👇\n\n#RetailStrategy #VisualMerchandising #StoreOperations",
+        "question": "What drives more footfall to a store?",
+        "options": ["Window displays", "Social media ads", "Word of mouth", "Location"],
+    },
+    {
+        "commentary": "Honest answers only! 🙌\n\nWhat's YOUR biggest challenge in retail hiring?\n\n#HRCommunity #Recruitment #RetailHR",
+        "question": "Biggest retail hiring challenge?",
+        "options": ["High attrition", "Finding skilled staff", "Budget constraints", "Cultural fit"],
+    },
+    {
+        "commentary": "Store launch veterans — what's your priority? 🎯\n\n#StoreOperations #RetailExcellence #NewStore",
+        "question": "Most critical for store launch?",
+        "options": ["Perfect displays", "Trained team", "Marketing buzz", "Inventory ready"],
+    },
+    {
+        "commentary": "Career growth in retail looks different for everyone 🚀\n\n#CareerGrowth #RetailCareers #Leadership",
+        "question": "Best skill for retail career growth?",
+        "options": ["People management", "Visual merchandising", "Data analytics", "Customer empathy"],
+    },
+    {
+        "commentary": "Low-budget engagement wins. What works best? 💡\n\n#EmployeeEngagement #TeamBuilding #WorkplaceCulture",
+        "question": "What motivates retail teams most?",
+        "options": ["Public recognition", "Growth opportunities", "Flexible hours", "Team outings"],
+    },
+    {
+        "commentary": "VM people — this one's for you! 🎨\n\n#VisualMerchandising #RetailDisplay #VMTips",
+        "question": "What stops a customer at a window?",
+        "options": ["Bold lighting", "Minimalist design", "Storytelling", "Color contrast"],
+    },
+    {
+        "commentary": "The future is coming fast 🚀 Where's your bet?\n\n#RetailTrends #FutureOfWork #Innovation",
+        "question": "Which trend dominates retail next?",
+        "options": ["AI-powered VM", "Experiential stores", "Sustainability", "Omnichannel"],
+    },
+    {
+        "commentary": "First-week onboarding shapes everything 🎯\n\n#Onboarding #HRTips #EmployeeExperience",
+        "question": "Most important in onboarding week 1?",
+        "options": ["Buddy system", "Brand immersion", "Role clarity", "Team intros"],
+    },
+    {
+        "commentary": "Monday morning debate for my retail network ☕\n\n#RetailLife #StoreManagement #RetailDebate",
+        "question": "What makes a great store manager?",
+        "options": ["Team builder", "Problem solver", "Customer-first", "Detail-oriented"],
+    },
+    {
+        "commentary": "Settling this once and for all 🔥\n\n#VisualMerchandising #Retail #StoreDesign",
+        "question": "More impact on store sales?",
+        "options": ["Window display", "In-store layout", "Music & scent", "Staff energy"],
+    },
+]
+
+# ============================================================
+# HASHTAG BANK
+# ============================================================
 
 HASHTAGS = {
-    "Visual Merchandising": ["#VisualMerchandising", "#RetailDisplay", "#StoreDesign", "#VMTips", "#RetailExperience", "#WindowDisplay"],
-    "HR & Recruitment": ["#HumanResources", "#Recruitment", "#TalentAcquisition", "#HRTech", "#Hiring", "#PeopleFirst"],
-    "Engagement": ["#LinkedInPoll", "#CareerTalk", "#RetailCommunity", "#HRCommunity", "#LetsTalk"],
-    "Store Operations": ["#RetailOperations", "#StoreManagement", "#RetailExcellence", "#CustomerExperience", "#RetailStrategy"],
-    "Career & Leadership": ["#Leadership", "#CareerGrowth", "#ProfessionalDevelopment", "#CareerAdvice", "#GrowthMindset"],
-    "Employee Engagement": ["#EmployeeEngagement", "#WorkplaceCulture", "#TeamBuilding", "#EmployeeExperience", "#PeopleMatter"],
-    "Industry Trends": ["#FutureOfWork", "#RetailTrends", "#HRTrends", "#Innovation", "#DigitalTransformation"],
+    "Visual Merchandising": ["#VisualMerchandising", "#RetailDisplay", "#StoreDesign", "#VMTips", "#WindowDisplay", "#RetailExperience", "#Merchandising"],
+    "HR & People Management": ["#HumanResources", "#Recruitment", "#TalentAcquisition", "#PeopleFirst", "#HRTech", "#RetailHR", "#Hiring"],
+    "Store Operations": ["#RetailOperations", "#StoreManagement", "#RetailExcellence", "#CustomerExperience", "#RetailStrategy", "#StoreLaunch"],
+    "Career & Leadership": ["#Leadership", "#CareerGrowth", "#ProfessionalDevelopment", "#CareerAdvice", "#GrowthMindset", "#WomenInRetail"],
+    "Employee Engagement": ["#EmployeeEngagement", "#WorkplaceCulture", "#TeamBuilding", "#EmployeeExperience", "#PeopleMatter", "#RetailTeams"],
+    "Retail Strategy": ["#RetailStrategy", "#RetailInnovation", "#CustomerExperience", "#RetailGrowth", "#BrickAndMortar", "#RetailLeadership"],
+    "Industry Trends": ["#FutureOfWork", "#RetailTrends", "#HRTrends", "#Innovation", "#DigitalTransformation", "#RetailTech"],
+    "Quick VM Tip": ["#VMTips", "#VisualMerchandising", "#RetailHacks", "#StoreDisplay"],
+    "HR Hot Take": ["#HRCommunity", "#RetailHR", "#TalentManagement", "#HotTake"],
+    "Retail Life": ["#RetailLife", "#RetailProblems", "#StoreLife", "#RetailHumor"],
+    "Career Advice": ["#CareerTips", "#RetailCareers", "#ProfessionalGrowth", "#Mentoring"],
+    "Team Culture": ["#TeamCulture", "#WorkplaceWellbeing", "#RetailTeams", "#Gratitude"],
+    "Weekend Wisdom": ["#WeekendWisdom", "#RetailLearnings", "#SaturdayThoughts", "#GrowthMindset"],
+    "Week Ahead": ["#MondayMotivation", "#WeekAhead", "#RetailGoals", "#NewWeek"],
 }
-
-HOOKS = [
-    "Here's something most people overlook →",
-    "After 8+ years in retail, I've learned this →",
-    "This changed how I think about {topic} →",
-    "Unpopular opinion about {topic}:",
-    "3 things I wish I knew earlier about {topic}:",
-    "The biggest mistake I see in {topic}:",
-    "Nobody talks about this in {topic}, but →",
-    "A simple framework for {topic} that works:",
-    "I've managed 5+ store launches. Here's my #1 lesson →",
-    "If you're in {topic}, read this carefully →",
-]
 
 
 def load_history():
@@ -66,35 +221,57 @@ def save_history(history):
 
 def get_today_config():
     day = date.today().weekday()
-    return CONTENT_CALENDAR[day]
+    if POST_SESSION == "evening":
+        return EVENING_CALENDAR[day]
+    return MORNING_CALENDAR[day]
 
 
 def build_prompt(topic, style):
-    hook = random.choice(HOOKS).replace("{topic}", topic.lower())
+    hooks = HOOKS.get(style, HOOKS["actionable_tips"])
+    hook = random.choice(hooks).replace("{topic}", topic.lower()) if hooks else ""
     hashtags = " ".join(random.sample(HASHTAGS.get(topic, HASHTAGS["Career & Leadership"]), min(4, len(HASHTAGS.get(topic, [])))))
 
-    return f"""You are a LinkedIn content creator for a professional named Preethi Prasanna who has 8+ years of experience in Visual Merchandising, Store Operations, and is transitioning into HR/People Management.
+    session_context = ""
+    if POST_SESSION == "evening":
+        session_context = """
+- This is an EVENING post — make it lighter, more conversational, snackable
+- Keep it under 150 words
+- More personal, less preachy
+- Can be slightly humorous or relatable"""
+    else:
+        session_context = """
+- This is a MORNING post — professional, value-driven, actionable
+- Length: 150-250 words (optimal for LinkedIn engagement)
+- Focus on providing genuine value or sharing a real insight"""
 
-Generate ONE LinkedIn post with these requirements:
+    return f"""You are writing a LinkedIn post AS Preethi Prasanna — a professional with 8+ years in Visual Merchandising & Store Operations, now expanding into HR/People Management. She's worked on store launches, built teams from scratch, and managed VM for premium retail brands in India.
+
+Write ONE LinkedIn post:
 - Topic: {topic}
 - Style: {style}
 - Opening hook (use or adapt): "{hook}"
-- Tone: Professional, authentic, human-like (NOT robotic or AI-sounding)
-- Length: 150-250 words (optimal for LinkedIn engagement)
-- Include a strong Call-to-Action at the end (ask a question to drive comments)
-- Add 4-5 relevant hashtags at the end from these or similar: {hashtags}
-- Use line breaks for readability (short paragraphs, 1-2 sentences each)
-- Include emojis sparingly (2-3 max)
-- Reference real retail/HR scenarios from Indian market
-- Make it feel like a real person sharing their experience, NOT a generic AI post
+{session_context}
 
-DO NOT:
-- Use phrases like "In today's fast-paced world" or "Let me share"
+WRITING RULES:
+- First 2 lines MUST create curiosity (this is what shows before "see more")
+- Use line breaks aggressively (every 1-2 sentences)
+- Short paragraphs, punchy sentences
+- Include ONE specific number, example, or scenario from Indian retail
+- End with a question that people WANT to answer in comments
+- Add 4 relevant hashtags at the end: {hashtags}
+- Use 2-3 emojis max (not every line)
+- Write like a real person posting on their phone, not a corporate comms team
+
+NEVER DO:
 - Start with "I" as the very first word
-- Use corporate jargon excessively
-- Make it longer than 250 words
+- Use "In today's fast-paced world" or "Let me share" or "As professionals"
+- Write generic advice without specifics
+- Sound like ChatGPT (no "It's important to note", "Here's the thing", "At the end of the day")
+- Use more than 250 words
 
-Output ONLY the LinkedIn post text. Nothing else."""
+VOICE: Confident but humble. Direct. Occasional humor. Real experiences > theory.
+
+Output ONLY the post text. Nothing else."""
 
 
 def generate_with_gemini(prompt):
@@ -111,34 +288,15 @@ def generate_with_gemini(prompt):
 
 
 def generate_fallback(topic, style):
-    """Fallback templates when API is unavailable."""
-    templates = {
-        "Visual Merchandising": [
-            "Your store window has 3 seconds to stop a customer.\n\n3 seconds.\n\nThat's all the time you get before they walk past.\n\nAfter setting up 5+ stores this year, here's what I've learned about window displays that actually convert:\n\n→ Less is more. One hero product > 10 cluttered items\n→ Lighting creates mood. Warm light = luxury feel\n→ Change displays every 2 weeks minimum\n→ Eye-level placement drives 40% more attention\n\nThe best VM isn't about making things look pretty.\nIt's about making customers feel something.\n\nWhat's one display trick that works for your store? 👇\n\n#VisualMerchandising #RetailDisplay #StoreDesign #VMTips",
-            "Most stores spend lakhs on inventory but ignore how it's presented.\n\nHere's the truth: A well-merchandised ₹500 product outsells a poorly displayed ₹5000 one.\n\nIn my 8 years of VM, the stores that win consistently do these 3 things:\n\n1️⃣ Zone their store by customer journey (not product category)\n2️⃣ Refresh displays weekly (not monthly)\n3️⃣ Train every store associate on basic VM principles\n\nVisual merchandising isn't a one-person job. It's a store culture.\n\nAgree or disagree? Let me know 👇\n\n#VisualMerchandising #RetailOperations #StoreManagement #CustomerExperience",
-        ],
-        "HR & Recruitment": [
-            "The biggest hiring mistake in retail?\n\nHiring for skills, not attitude.\n\nI've onboarded dozens of store team members. The ones who lasted weren't always the most experienced.\n\nThey were the ones who:\n→ Showed curiosity about the brand\n→ Treated customers like people, not transactions\n→ Asked questions during induction (not just nodded)\n→ Took ownership from Day 1\n\nSkills can be trained in 2 weeks.\nAttitude takes years to change.\n\nHR teams: What's your #1 filter when hiring for retail? 👇\n\n#Recruitment #TalentAcquisition #HiringTips #RetailHR #PeopleFirst",
-        ],
-        "Engagement": [
-            "Quick poll for my retail & HR network 👇\n\nWhat matters MORE for a new store launch?\n\n🅰️ Perfect visual displays\n🅱️ Well-trained store team\n🅲️ Strong brand marketing\n🅳️ Location & footfall\n\nI've seen stores with amazing VM but untrained staff fail.\nAnd stores with average displays but killer teams succeed.\n\nMy answer? 🅱️ — People always win.\n\nDrop your choice below! Let's debate 🔥\n\n#LinkedInPoll #RetailCommunity #StoreManagement #TeamBuilding",
-        ],
-        "Store Operations": [
-            "Opening a new store in 30 days sounds exciting.\n\nUntil you're coordinating:\n→ Fixture installations\n→ Vendor deliveries\n→ Staff recruitment & training\n→ VM setup & brand compliance\n→ Marketing collateral\n→ Compliance & documentation\n\nAll. At. Once.\n\nAfter 5+ store launches, here's my #1 rule:\n\nStart with people, not products.\n\nHire and train your team FIRST. Everything else can be fixed on Day 2. A bad team on Day 1? That's a disaster.\n\nStore launch veterans — what's your survival tip? 👇\n\n#StoreOperations #RetailExcellence #NewStoreLaunch #RetailStrategy",
-        ],
-        "Career & Leadership": [
-            "8 years ago, I started as a Visual Merchandiser.\n\nToday, I manage store operations, lead teams, handle onboarding, and drive training programs.\n\nNobody told me this would happen. But here's what I've realized:\n\nYour job title is just the starting point.\nThe skills you build along the way define your career.\n\nVM taught me:\n→ People management\n→ Stakeholder coordination\n→ Project execution\n→ Training & development\n\nEvery role has hidden skills. Are you noticing yours?\n\nWhat unexpected skill did YOUR job teach you? 👇\n\n#CareerGrowth #Leadership #ProfessionalDevelopment #GrowthMindset",
-        ],
-        "Employee Engagement": [
-            "A simple 'good morning' to your store team costs nothing.\n\nBut it changes everything.\n\nI've seen teams transform when leaders just showed up — not to inspect, but to connect.\n\n3 things that boosted my team's morale instantly:\n\n☕ Morning check-ins (2 min, not 20)\n🎯 Recognizing small wins publicly\n📞 One personal conversation per week\n\nEmployee engagement doesn't need a ₹5L budget.\nIt needs presence and consistency.\n\nWhat's your go-to engagement hack? 👇\n\n#EmployeeEngagement #TeamBuilding #WorkplaceCulture #PeopleMatter",
-        ],
-        "Industry Trends": [
-            "Retail in 2026 is unrecognizable from 2020.\n\n→ AI-powered planograms\n→ Digital-first VM strategies\n→ Experiential stores over transactional ones\n→ HR tech automating onboarding\n→ Employee experience = Customer experience\n\nThe retailers who'll win aren't just adapting.\nThey're building teams that can adapt continuously.\n\nThat's why HR in retail is more important than ever.\n\nWhat trend excites you most about retail's future? 👇\n\n#RetailTrends #FutureOfWork #HRTrends #Innovation #DigitalTransformation",
-        ],
-    }
-
-    posts = templates.get(topic, templates["Career & Leadership"])
-    return random.choice(posts)
+    """Fallback templates when API unavailable."""
+    templates = [
+        f"Stop scrolling.\n\nIf you're in retail, this will save you hours.\n\nAfter 5+ store launches, here's my cheat sheet for {topic.lower()}:\n\n→ Start with your customer's eye level\n→ Change displays every 14 days (not when you feel like it)\n→ Train your team on WHY, not just HOW\n→ Measure footfall before/after every change\n\nThe stores that win aren't doing anything revolutionary.\nThey're doing the basics consistently.\n\nWhich one do you struggle with most? 👇\n\n#VisualMerchandising #RetailOperations #StoreManagement #RetailTips",
+        f"The biggest myth in retail?\n\n'Good VM sells itself.'\n\nNo. Good VM + trained staff + right energy = sales.\n\nI've seen stores with stunning displays and zero conversions.\nI've seen stores with basic VM but incredible teams crushing targets.\n\nThe difference isn't the display.\nIt's the team behind it.\n\n{topic} is a team sport. Build accordingly.\n\nAgree? Disagree? Tell me 👇\n\n#RetailExcellence #TeamBuilding #VisualMerchandising #StoreOperations",
+        f"Real talk about {topic.lower()}.\n\nNobody posts about the failures. So let me go first.\n\nI once spent 3 days perfecting a store display.\nCustomers walked past it without a second glance.\n\nThe fix? I asked a customer what they were looking for.\nRebuilt the display around THEIR journey in 2 hours.\n\nResult: 35% increase in dwell time.\n\nLesson: We design for Instagram. We should design for customers.\n\nWhat's a retail fail that taught you something? 👇\n\n#RetailLearning #VisualMerchandising #CustomerFirst #RetailTips",
+        f"Coffee's ready ☕ Here's your Monday {topic.lower()} reminder:\n\n1. Your team mirrors your energy (check yours first)\n2. One small display change > zero changes while waiting for 'the big revamp'\n3. Ask your newest team member what confuses them (they see what you've normalized)\n4. Document what works (future you will thank present you)\n\nSimple? Yes.\nDoes everyone do it? No.\n\nThat's the edge.\n\nWhich one are you doing this week? 👇\n\n#RetailLeadership #StoreOperations #RetailTips #MondayMotivation",
+        f"Quiet confession from 8 years in retail:\n\nThe best store I ever managed wasn't the most beautiful one.\n\nIt was the one where:\n→ Every team member greeted by name\n→ The stockroom was organized (not just the floor)\n→ We celebrated small wins loudly\n→ Training happened daily, not quarterly\n\nRetail success isn't a visual. It's a feeling.\n\nYour customers feel what your team feels.\n\nBuild the team first. The aesthetics follow.\n\nWhat made YOUR best store 'the best'? 👇\n\n#RetailExcellence #TeamCulture #StoreOperations #EmployeeEngagement",
+    ]
+    return random.choice(templates)
 
 
 def is_duplicate(content, history):
@@ -148,36 +306,25 @@ def is_duplicate(content, history):
 
 def save_post(content, topic, style):
     today = date.today().isoformat()
-    filename = f"{today}_{topic.lower().replace(' & ', '-').replace(' ', '-')}.md"
+    session = f"_{POST_SESSION}" if POST_SESSION == "evening" else ""
+    filename = f"{today}{session}_{topic.lower().replace(' & ', '-').replace(' ', '-')}.md"
     filepath = GENERATED_DIR / filename
-
-    metadata = f"""---
-date: {today}
-topic: {topic}
-style: {style}
-status: generated
----
-
-{content}
-"""
-    filepath.write_text(metadata)
+    filepath.write_text(f"---\ndate: {today}\ntopic: {topic}\nstyle: {style}\nsession: {POST_SESSION}\n---\n\n{content}\n")
     return filepath
 
 
 def get_person_id():
-    """Get LinkedIn person ID from token."""
     r = requests.get("https://api.linkedin.com/v2/userinfo",
-                     headers={"Authorization": f"Bearer {LINKEDIN_TOKEN}"},
-                     timeout=30)
+                     headers={"Authorization": f"Bearer {LINKEDIN_TOKEN}"}, timeout=30)
     if not r.ok:
         raise RuntimeError(f"Failed to get person ID: {r.status_code} {r.text}")
     return r.json()["sub"]
 
 
 def publish_to_linkedin(content, poll_data=None):
-    """Publish post to LinkedIn. Supports text posts and polls."""
+    """Publish post or poll to LinkedIn."""
     if not LINKEDIN_TOKEN:
-        print("⚠️ LINKEDIN_TOKEN not set — skipping auto-publish")
+        print("⚠️ LINKEDIN_TOKEN not set — skipping publish")
         return False
 
     try:
@@ -207,95 +354,45 @@ def publish_to_linkedin(content, poll_data=None):
         r = requests.post("https://api.linkedin.com/rest/posts",
                           headers=headers, json=body, timeout=30)
         if r.status_code == 401:
-            print("❌ LinkedIn token expired! Regenerate using get_token.py")
+            print("❌ Token expired! Regenerate with get_token.py")
             return False
         if not r.ok:
-            print(f"❌ LinkedIn post failed: {r.status_code} {r.text}")
+            print(f"❌ Post failed: {r.status_code} {r.text}")
             return False
-        print(f"✅ Successfully published {'poll' if poll_data else 'post'} to LinkedIn!")
+        print(f"✅ Published {'poll' if poll_data else 'post'} to LinkedIn!")
         return True
     except Exception as e:
-        print(f"❌ LinkedIn publishing error: {e}")
+        print(f"❌ Publishing error: {e}")
         return False
 
 
-POLL_TEMPLATES = [
-    {
-        "commentary": "Every retailer debates this. Let's settle it 👇\n\nWhat drives MORE footfall to a store?\n\n#RetailStrategy #VisualMerchandising #StoreOperations #RetailPoll",
-        "question": "What drives more footfall?",
-        "options": ["Window displays", "Social media ads", "Word of mouth", "Location & visibility"],
-    },
-    {
-        "commentary": "Honest answers only! 🙌\n\nAs an HR professional, what's YOUR biggest hiring challenge in retail?\n\n#HRCommunity #Recruitment #RetailHR #TalentAcquisition",
-        "question": "Biggest hiring challenge in retail?",
-        "options": ["High attrition rate", "Finding skilled staff", "Budget constraints", "Cultural fit"],
-    },
-    {
-        "commentary": "This is the eternal retail debate 🔥\n\nWhat matters MORE for a new store launch?\n\n#StoreOperations #RetailExcellence #NewStoreLaunch #RetailPoll",
-        "question": "Most critical for store launch success?",
-        "options": ["Perfect VM displays", "Well-trained team", "Strong marketing", "Prime location"],
-    },
-    {
-        "commentary": "Career growth in retail is unique. Where do YOU focus? 👇\n\n#CareerGrowth #RetailCareers #Leadership #ProfessionalDevelopment",
-        "question": "Best skill for career growth in retail?",
-        "options": ["People management", "Visual merchandising", "Data & analytics", "Customer experience"],
-    },
-    {
-        "commentary": "Employee engagement doesn't need a massive budget 💡\n\nWhat keeps retail teams motivated the most?\n\n#EmployeeEngagement #TeamBuilding #WorkplaceCulture #RetailHR",
-        "question": "What motivates retail teams most?",
-        "options": ["Recognition & praise", "Growth opportunities", "Flexible schedules", "Team bonding events"],
-    },
-    {
-        "commentary": "VM professionals — this one's for you! 🎨\n\nWhat's the #1 element that makes a window display stop traffic?\n\n#VisualMerchandising #RetailDisplay #WindowDisplay #VMTips",
-        "question": "What makes a window display irresistible?",
-        "options": ["Bold lighting", "Minimalist design", "Storytelling theme", "Color psychology"],
-    },
-    {
-        "commentary": "The retail industry is evolving fast 🚀\n\nWhich trend will dominate retail in 2027?\n\n#RetailTrends #FutureOfWork #Innovation #RetailTech",
-        "question": "Which trend will dominate retail next?",
-        "options": ["AI-powered VM", "Experiential stores", "Sustainability focus", "Omnichannel fusion"],
-    },
-    {
-        "commentary": "Onboarding can make or break a new hire's experience 🎯\n\nWhat's the most important part of the first week?\n\n#Onboarding #HRTips #EmployeeExperience #PeopleFirst",
-        "question": "Most important in first-week onboarding?",
-        "options": ["Buddy/mentor system", "Brand immersion", "Clear role clarity", "Team introductions"],
-    },
-]
-
-
 def build_poll_prompt(topic):
-    """Build Gemini prompt to generate a poll."""
-    return f"""You are a LinkedIn content creator for Preethi Prasanna (8+ years in Visual Merchandising, Store Operations, transitioning to HR).
+    return f"""Generate a LinkedIn POLL for Preethi Prasanna (8+ years Visual Merchandising & Store Ops, expanding to HR).
 
-Generate a LinkedIn POLL about: {topic}
+Topic: {topic}
 
 Requirements:
-- Write a short commentary (2-3 lines, engaging, ends with a CTA to vote)
-- Write a poll question (max 140 chars)
-- Write exactly 4 poll options (max 30 chars each)
-- Include 4 relevant hashtags in the commentary
-- Tone: Professional, engaging, authentic
+- Commentary: 2-3 punchy lines that make people WANT to vote. Include 3-4 hashtags.
+- Question: max 140 chars, clear and debatable
+- 4 options: max 30 chars each, all should feel like valid answers
+- Make it relevant to Indian retail/HR professionals
 
-Output EXACTLY in this JSON format (no other text):
-{{"commentary": "Your engaging intro text with hashtags", "question": "Your poll question?", "options": ["Option 1", "Option 2", "Option 3", "Option 4"]}}"""
+Output EXACTLY as JSON (nothing else):
+{{"commentary": "text with hashtags", "question": "question?", "options": ["A", "B", "C", "D"]}}"""
 
 
 def generate_poll(topic):
-    """Generate poll content — try Gemini, fallback to templates."""
     try:
-        prompt = build_poll_prompt(topic)
-        raw = generate_with_gemini(prompt)
-        # Parse JSON from response
+        raw = generate_with_gemini(build_poll_prompt(topic))
         raw = raw.strip()
         if raw.startswith("```"):
             raw = raw.split("\n", 1)[1].rsplit("```", 1)[0]
         poll = json.loads(raw)
         if "question" in poll and "options" in poll and len(poll["options"]) >= 2:
-            print("✅ Poll generated with Gemini AI")
+            print("✅ Poll generated with Gemini")
             return poll
     except Exception as e:
-        print(f"⚠️ Gemini poll generation failed ({e}), using template")
-
+        print(f"⚠️ Gemini poll failed ({e}), using template")
     return random.choice(POLL_TEMPLATES)
 
 
@@ -308,65 +405,53 @@ def main():
     topic = config["topic"]
     style = config["style"]
 
-    print(f"📅 Today's topic: {topic} | Style: {style}")
+    print(f"{'🌅' if POST_SESSION == 'morning' else '🌙'} {POST_SESSION.upper()} | Topic: {topic} | Style: {style}")
 
-    # Check if today is a poll day (Wednesday = Engagement day, or randomly 2x/week)
-    is_poll_day = (style == "Poll / Question") or (date.today().weekday() in [5] and random.random() < 0.5)
+    is_poll = (style == "poll")
 
-    if is_poll_day:
-        print("📊 Generating a LinkedIn POLL today!")
+    if is_poll:
+        print("📊 Generating LinkedIn POLL")
         poll_data = generate_poll(topic)
         content = poll_data.get("commentary", "Share your thoughts! 👇")
-
-        # Save post
-        filepath = save_post(content + f"\n\n[POLL: {poll_data['question']}]\nOptions: {' | '.join(poll_data['options'])}", topic, "Poll")
-        print(f"💾 Poll saved: {filepath.name}")
-
-        # Publish poll
+        filepath = save_post(content + f"\n\n[POLL: {poll_data['question']}]\n{chr(10).join(poll_data['options'])}", topic, "poll")
         published = publish_to_linkedin(content, poll_data)
     else:
-        # Regular text post
-        content = None
         try:
-            prompt = build_prompt(topic, style)
-            content = generate_with_gemini(prompt)
-            print("✅ Generated with Gemini AI")
+            content = generate_with_gemini(build_prompt(topic, style))
+            print("✅ Generated with Gemini")
         except Exception as e:
-            print(f"⚠️ Gemini unavailable ({e}), using templates")
+            print(f"⚠️ Gemini unavailable ({e}), using fallback")
             content = generate_fallback(topic, style)
 
         if is_duplicate(content, history):
-            print("🔄 Duplicate detected, regenerating...")
+            print("🔄 Duplicate detected, using fallback")
             content = generate_fallback(topic, style)
 
         filepath = save_post(content, topic, style)
-        print(f"💾 Post saved: {filepath.name}")
         published = publish_to_linkedin(content)
+        poll_data = None
 
     # Update history
-    content_hash = hashlib.md5(content.encode()).hexdigest()
     history["posts"].append({
         "date": date.today().isoformat(),
+        "session": POST_SESSION,
         "topic": topic,
         "style": style,
         "file": filepath.name,
-        "hash": content_hash,
+        "hash": hashlib.md5(content.encode()).hexdigest(),
         "published": published,
-        "type": "poll" if is_poll_day else "text",
+        "type": "poll" if is_poll else "text",
     })
-    history["hashes"].append(content_hash)
+    history["hashes"].append(hashlib.md5(content.encode()).hexdigest())
     save_history(history)
 
-    print("\n" + "=" * 50)
-    print(f"📝 TODAY'S LINKEDIN {'POLL' if is_poll_day else 'POST'}:")
-    print("=" * 50)
+    print(f"\n{'='*50}\n📝 {'POLL' if is_poll else 'POST'}:\n{'='*50}")
     print(content)
-    if is_poll_day:
-        print(f"\n📊 Question: {poll_data['question']}")
-        print(f"   Options: {' | '.join(poll_data['options'])}")
+    if is_poll:
+        print(f"\n📊 {poll_data['question']}")
+        for i, opt in enumerate(poll_data['options'], 1):
+            print(f"   {i}. {opt}")
     print("=" * 50)
-
-    return content
 
 
 if __name__ == "__main__":
