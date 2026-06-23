@@ -19,7 +19,7 @@ PUBLISHED_DIR = CONTENT_DIR / "published"
 HISTORY_FILE = CONTENT_DIR / "history.json"
 
 LINKEDIN_TOKEN = os.environ.get("LINKEDIN_TOKEN")
-LINKEDIN_VERSION = "202506"
+LINKEDIN_VERSION = "202606"
 POST_SESSION = os.environ.get("POST_SESSION", "morning")
 
 MORNING_CALENDAR = {
@@ -266,6 +266,57 @@ def is_duplicate(content, history):
 
 
 # ============================================================
+# LINKEDIN TOKEN REFRESH
+# ============================================================
+
+def refresh_linkedin_token():
+    """Refresh LinkedIn token and update GitHub secret. Returns new token or None."""
+    refresh_token = os.environ.get("LINKEDIN_REFRESH_TOKEN")
+    client_id = os.environ.get("LINKEDIN_CLIENT_ID")
+    client_secret = os.environ.get("LINKEDIN_CLIENT_SECRET")
+    gh_pat = os.environ.get("GH_PAT")
+    if not all([refresh_token, client_id, client_secret]):
+        print("⚠️ Missing refresh token env vars")
+        return None
+    try:
+        r = requests.post("https://www.linkedin.com/oauth/v2/accessToken", data={
+            "grant_type": "refresh_token",
+            "refresh_token": refresh_token,
+            "client_id": client_id,
+            "client_secret": client_secret,
+        }, timeout=30)
+        if not r.ok:
+            print(f"❌ Token refresh failed: {r.status_code} {r.text}")
+            return None
+        new_token = r.json().get("access_token")
+        if not new_token:
+            return None
+        print("✅ LinkedIn token refreshed successfully")
+        # Update GitHub secret
+        if gh_pat:
+            try:
+                from nacl import encoding, public
+                repo = "visualcraft-ops/Linkedin-post"
+                gh_headers = {"Authorization": f"Bearer {gh_pat}", "Accept": "application/vnd.github+json"}
+                key_resp = requests.get(f"https://api.github.com/repos/{repo}/actions/secrets/public-key", headers=gh_headers, timeout=30)
+                if key_resp.ok:
+                    key_data = key_resp.json()
+                    public_key = public.PublicKey(key_data["key"].encode("utf-8"), encoding.Base64Encoder())
+                    sealed_box = public.SealedBox(public_key)
+                    encrypted = sealed_box.encrypt(new_token.encode("utf-8"))
+                    encrypted_value = encoding.Base64Encoder.encode(encrypted).decode("utf-8")
+                    requests.put(f"https://api.github.com/repos/{repo}/actions/secrets/LINKEDIN_TOKEN",
+                                 headers=gh_headers, json={"encrypted_value": encrypted_value, "key_id": key_data["key_id"]}, timeout=30)
+                    print("✅ GitHub secret LINKEDIN_TOKEN updated")
+            except Exception as e:
+                print(f"⚠️ Failed to update GitHub secret: {e}")
+        return new_token
+    except Exception as e:
+        print(f"❌ Token refresh error: {e}")
+        return None
+
+
+# ============================================================
 # LINKEDIN API FUNCTIONS
 # ============================================================
 
@@ -308,7 +359,16 @@ def publish_to_linkedin(content, poll_data=None):
             }
         r = requests.post("https://api.linkedin.com/rest/posts", headers=headers, json=body, timeout=30)
         if r.status_code == 401:
-            print("❌ Token expired! Regenerate with get_token.py")
+            print("❌ Token expired! Attempting auto-refresh...")
+            new_token = refresh_linkedin_token()
+            if new_token:
+                headers["Authorization"] = f"Bearer {new_token}"
+                r = requests.post("https://api.linkedin.com/rest/posts", headers=headers, json=body, timeout=30)
+                if r.ok:
+                    post_urn = r.headers.get("x-restli-id", "")
+                    print(f"✅ Published {'poll' if poll_data else 'post'} after refresh! URN: {post_urn}")
+                    return post_urn
+                print(f"❌ Post failed after refresh: {r.status_code} {r.text}")
             return None
         if not r.ok:
             print(f"❌ Post failed: {r.status_code} {r.text}")

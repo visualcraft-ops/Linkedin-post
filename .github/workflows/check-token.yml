@@ -10,22 +10,72 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests pynacl
+
       - name: Verify LinkedIn token is valid
         env:
           LINKEDIN_TOKEN: ${{ secrets.LINKEDIN_TOKEN }}
+          LINKEDIN_REFRESH_TOKEN: ${{ secrets.LINKEDIN_REFRESH_TOKEN }}
+          LINKEDIN_CLIENT_ID: ${{ secrets.LINKEDIN_CLIENT_ID }}
+          LINKEDIN_CLIENT_SECRET: ${{ secrets.LINKEDIN_CLIENT_SECRET }}
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: |
-          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
-            -H "Authorization: Bearer $LINKEDIN_TOKEN" \
-            "https://api.linkedin.com/v2/userinfo")
+          python3 << 'EOF'
+          import os, requests
 
-          if [ "$STATUS" = "401" ]; then
-            echo "❌ TOKEN EXPIRED! Please regenerate at:"
-            echo "   Run get_token.py locally and update LINKEDIN_TOKEN secret"
-            echo "   https://github.com/visualcraft-ops/Linkedin-post/settings/secrets/actions"
-            exit 1
-          elif [ "$STATUS" = "200" ]; then
-            echo "✅ LinkedIn token is valid"
-          else
-            echo "⚠️ Unexpected status: $STATUS"
-            exit 1
-          fi
+          token = os.environ.get("LINKEDIN_TOKEN", "")
+          r = requests.get("https://api.linkedin.com/v2/userinfo",
+                           headers={"Authorization": f"Bearer {token}"}, timeout=30)
+
+          if r.status_code == 200:
+              print("✅ LinkedIn token is valid")
+          elif r.status_code == 401:
+              print("❌ Token expired! Attempting auto-refresh...")
+              refresh_token = os.environ.get("LINKEDIN_REFRESH_TOKEN")
+              client_id = os.environ.get("LINKEDIN_CLIENT_ID")
+              client_secret = os.environ.get("LINKEDIN_CLIENT_SECRET")
+              gh_pat = os.environ.get("GH_PAT")
+              if not all([refresh_token, client_id, client_secret]):
+                  print("Missing refresh env vars")
+                  exit(1)
+              resp = requests.post("https://www.linkedin.com/oauth/v2/accessToken", data={
+                  "grant_type": "refresh_token",
+                  "refresh_token": refresh_token,
+                  "client_id": client_id,
+                  "client_secret": client_secret,
+              }, timeout=30)
+              if not resp.ok:
+                  print(f"Refresh failed: {resp.status_code} {resp.text}")
+                  exit(1)
+              new_token = resp.json().get("access_token")
+              if not new_token:
+                  print("No access_token in response")
+                  exit(1)
+              print("✅ Token refreshed successfully")
+              if gh_pat:
+                  from nacl import encoding, public
+                  repo = "visualcraft-ops/Linkedin-post"
+                  gh_headers = {"Authorization": f"Bearer {gh_pat}", "Accept": "application/vnd.github+json"}
+                  key_resp = requests.get(f"https://api.github.com/repos/{repo}/actions/secrets/public-key", headers=gh_headers, timeout=30)
+                  if key_resp.ok:
+                      key_data = key_resp.json()
+                      pk = public.PublicKey(key_data["key"].encode("utf-8"), encoding.Base64Encoder())
+                      sealed = public.SealedBox(pk)
+                      encrypted = sealed.encrypt(new_token.encode("utf-8"))
+                      enc_val = encoding.Base64Encoder.encode(encrypted).decode("utf-8")
+                      requests.put(f"https://api.github.com/repos/{repo}/actions/secrets/LINKEDIN_TOKEN",
+                                   headers=gh_headers, json={"encrypted_value": enc_val, "key_id": key_data["key_id"]}, timeout=30)
+                      print("✅ GitHub secret LINKEDIN_TOKEN updated")
+                  else:
+                      print(f"⚠️ Could not get repo public key: {key_resp.status_code}")
+                      exit(1)
+          else:
+              print(f"⚠️ Unexpected status: {r.status_code}")
+              exit(1)
+          EOF

@@ -25,12 +25,16 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install google-genai requests
+        run: pip install google-genai requests pynacl
 
       - name: Generate and publish evening post
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           LINKEDIN_TOKEN: ${{ secrets.LINKEDIN_TOKEN }}
+          LINKEDIN_CLIENT_ID: ${{ secrets.LINKEDIN_CLIENT_ID }}
+          LINKEDIN_CLIENT_SECRET: ${{ secrets.LINKEDIN_CLIENT_SECRET }}
+          LINKEDIN_REFRESH_TOKEN: ${{ secrets.LINKEDIN_REFRESH_TOKEN }}
+          GH_PAT: ${{ secrets.GH_PAT }}
           POST_SESSION: evening
         run: python src/generator.py
 
