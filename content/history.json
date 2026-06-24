@@ -84,6 +84,17 @@
       "published": true,
       "post_urn": "urn:li:share:7475271416251092995",
       "type": "text"
+    },
+    {
+      "date": "2026-06-24",
+      "session": "morning",
+      "topic": "Store Operations",
+      "style": "case_study",
+      "file": "2026-06-24_store-operations.md",
+      "hash": "2c65d5f5b28d5bff8cd5a70a4859f9f7",
+      "published": true,
+      "post_urn": "urn:li:share:7475519646646001665",
+      "type": "text"
     }
   ],
   "hashes": [
@@ -94,6 +105,7 @@
     "b0becf6bb6ad8bbfdc42e89c61adabc9",
     "a86f92fea1e9b805b03ad0f02a178644",
     "8dd6c0b40d7c03c414dce3aa2a262703",
-    "514a5eff76950603c0c3121c2ff62c9f"
+    "514a5eff76950603c0c3121c2ff62c9f",
+    "2c65d5f5b28d5bff8cd5a70a4859f9f7"
   ]
 }
