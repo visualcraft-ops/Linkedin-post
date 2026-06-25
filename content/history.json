@@ -117,6 +117,17 @@
       "published": true,
       "post_urn": "urn:li:share:7475883143938379778",
       "type": "text"
+    },
+    {
+      "date": "2026-06-25",
+      "session": "evening",
+      "topic": "Career Advice",
+      "style": "poll",
+      "file": "2026-06-25_evening_career-advice.md",
+      "hash": "59cc20ee8302dadf271a2e75e2e17f1e",
+      "published": true,
+      "post_urn": "urn:li:ugcPost:7475996442709585921",
+      "type": "poll"
     }
   ],
   "hashes": [
@@ -130,6 +141,7 @@
     "514a5eff76950603c0c3121c2ff62c9f",
     "2c65d5f5b28d5bff8cd5a70a4859f9f7",
     "f68b0969b70f982df16f4354f8a07e2b",
-    "20cc2bccccee6d789d655d74bb5afc28"
+    "20cc2bccccee6d789d655d74bb5afc28",
+    "59cc20ee8302dadf271a2e75e2e17f1e"
   ]
 }
