@@ -106,6 +106,17 @@
       "published": true,
       "post_urn": "urn:li:share:7475618699903909889",
       "type": "text"
+    },
+    {
+      "date": "2026-06-25",
+      "session": "morning",
+      "topic": "Career & Leadership",
+      "style": "personal_story",
+      "file": "2026-06-25_career-leadership.md",
+      "hash": "20cc2bccccee6d789d655d74bb5afc28",
+      "published": true,
+      "post_urn": "urn:li:share:7475883143938379778",
+      "type": "text"
     }
   ],
   "hashes": [
@@ -118,6 +129,7 @@
     "8dd6c0b40d7c03c414dce3aa2a262703",
     "514a5eff76950603c0c3121c2ff62c9f",
     "2c65d5f5b28d5bff8cd5a70a4859f9f7",
-    "f68b0969b70f982df16f4354f8a07e2b"
+    "f68b0969b70f982df16f4354f8a07e2b",
+    "20cc2bccccee6d789d655d74bb5afc28"
   ]
 }
