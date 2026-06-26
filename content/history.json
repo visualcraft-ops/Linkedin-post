@@ -128,6 +128,17 @@
       "published": true,
       "post_urn": "urn:li:ugcPost:7475996442709585921",
       "type": "poll"
+    },
+    {
+      "date": "2026-06-26",
+      "session": "morning",
+      "topic": "Employee Engagement",
+      "style": "framework",
+      "file": "2026-06-26_employee-engagement.md",
+      "hash": "c4046b540aad25c174ef1b6b4d7eda27",
+      "published": true,
+      "post_urn": "urn:li:share:7476243381321535489",
+      "type": "text"
     }
   ],
   "hashes": [
@@ -142,6 +153,7 @@
     "2c65d5f5b28d5bff8cd5a70a4859f9f7",
     "f68b0969b70f982df16f4354f8a07e2b",
     "20cc2bccccee6d789d655d74bb5afc28",
-    "59cc20ee8302dadf271a2e75e2e17f1e"
+    "59cc20ee8302dadf271a2e75e2e17f1e",
+    "c4046b540aad25c174ef1b6b4d7eda27"
   ]
 }
