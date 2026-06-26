@@ -139,6 +139,17 @@
       "published": true,
       "post_urn": "urn:li:share:7476243381321535489",
       "type": "text"
+    },
+    {
+      "date": "2026-06-26",
+      "session": "evening",
+      "topic": "Team Culture",
+      "style": "gratitude_post",
+      "file": "2026-06-26_evening_team-culture.md",
+      "hash": "8efa59e31ebbd0ad2bac844b68bd2583",
+      "published": true,
+      "post_urn": "urn:li:share:7476341521038860288",
+      "type": "text"
     }
   ],
   "hashes": [
@@ -154,6 +165,7 @@
     "f68b0969b70f982df16f4354f8a07e2b",
     "20cc2bccccee6d789d655d74bb5afc28",
     "59cc20ee8302dadf271a2e75e2e17f1e",
-    "c4046b540aad25c174ef1b6b4d7eda27"
+    "c4046b540aad25c174ef1b6b4d7eda27",
+    "8efa59e31ebbd0ad2bac844b68bd2583"
   ]
 }
