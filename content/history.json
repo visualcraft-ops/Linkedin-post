@@ -161,6 +161,17 @@
       "published": true,
       "post_urn": "urn:li:share:7476572350289858560",
       "type": "text"
+    },
+    {
+      "date": "2026-06-27",
+      "session": "evening",
+      "topic": "Weekend Wisdom",
+      "style": "listicle",
+      "file": "2026-06-27_evening_weekend-wisdom.md",
+      "hash": "c9d5df10624c7d997debc832bb451479",
+      "published": true,
+      "post_urn": "urn:li:share:7476676995444224000",
+      "type": "text"
     }
   ],
   "hashes": [
@@ -178,6 +189,7 @@
     "59cc20ee8302dadf271a2e75e2e17f1e",
     "c4046b540aad25c174ef1b6b4d7eda27",
     "8efa59e31ebbd0ad2bac844b68bd2583",
-    "43d1dd3e1f2046ced349e85f2a7f005e"
+    "43d1dd3e1f2046ced349e85f2a7f005e",
+    "c9d5df10624c7d997debc832bb451479"
   ]
 }
