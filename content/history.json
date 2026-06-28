@@ -183,6 +183,17 @@
       "published": true,
       "post_urn": "urn:li:share:7476950773931610112",
       "type": "text"
+    },
+    {
+      "date": "2026-06-28",
+      "session": "evening",
+      "topic": "Week Ahead",
+      "style": "poll",
+      "file": "2026-06-28_evening_week-ahead.md",
+      "hash": "c0c86ea2b50d2977a33492969edd3c1f",
+      "published": true,
+      "post_urn": "urn:li:ugcPost:7477041761622880256",
+      "type": "poll"
     }
   ],
   "hashes": [
@@ -202,6 +213,7 @@
     "8efa59e31ebbd0ad2bac844b68bd2583",
     "43d1dd3e1f2046ced349e85f2a7f005e",
     "c9d5df10624c7d997debc832bb451479",
-    "6fb0ae1ed54358b495341fb3c8da4048"
+    "6fb0ae1ed54358b495341fb3c8da4048",
+    "c0c86ea2b50d2977a33492969edd3c1f"
   ]
 }
