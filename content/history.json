@@ -172,6 +172,17 @@
       "published": true,
       "post_urn": "urn:li:share:7476676995444224000",
       "type": "text"
+    },
+    {
+      "date": "2026-06-28",
+      "session": "morning",
+      "topic": "Industry Trends",
+      "style": "future_prediction",
+      "file": "2026-06-28_industry-trends.md",
+      "hash": "6fb0ae1ed54358b495341fb3c8da4048",
+      "published": true,
+      "post_urn": "urn:li:share:7476950773931610112",
+      "type": "text"
     }
   ],
   "hashes": [
@@ -190,6 +201,7 @@
     "c4046b540aad25c174ef1b6b4d7eda27",
     "8efa59e31ebbd0ad2bac844b68bd2583",
     "43d1dd3e1f2046ced349e85f2a7f005e",
-    "c9d5df10624c7d997debc832bb451479"
+    "c9d5df10624c7d997debc832bb451479",
+    "6fb0ae1ed54358b495341fb3c8da4048"
   ]
 }
