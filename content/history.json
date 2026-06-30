@@ -216,6 +216,17 @@
       "published": true,
       "post_urn": "urn:li:share:7477441667575320576",
       "type": "text"
+    },
+    {
+      "date": "2026-06-30",
+      "session": "morning",
+      "topic": "HR & People Management",
+      "style": "thought_leadership",
+      "file": "2026-06-30_hr-people-management.md",
+      "hash": "415193658de4165f774fc8c3b80be3a5",
+      "published": true,
+      "post_urn": "urn:li:share:7477692101959446528",
+      "type": "text"
     }
   ],
   "hashes": [
@@ -238,6 +249,7 @@
     "6fb0ae1ed54358b495341fb3c8da4048",
     "c0c86ea2b50d2977a33492969edd3c1f",
     "bc0ba3fadafa669d926a7b2eb7a95ba5",
-    "d8084243e3a1d80d06bb5080c9d36235"
+    "d8084243e3a1d80d06bb5080c9d36235",
+    "415193658de4165f774fc8c3b80be3a5"
   ]
 }
