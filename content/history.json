@@ -227,6 +227,17 @@
       "published": true,
       "post_urn": "urn:li:share:7477692101959446528",
       "type": "text"
+    },
+    {
+      "date": "2026-06-30",
+      "session": "evening",
+      "topic": "HR Hot Take",
+      "style": "debate_starter",
+      "file": "2026-06-30_evening_hr-hot-take.md",
+      "hash": "41a80592eef249f451689884cdf70137",
+      "published": true,
+      "post_urn": "urn:li:share:7477789719750307840",
+      "type": "text"
     }
   ],
   "hashes": [
@@ -250,6 +261,7 @@
     "c0c86ea2b50d2977a33492969edd3c1f",
     "bc0ba3fadafa669d926a7b2eb7a95ba5",
     "d8084243e3a1d80d06bb5080c9d36235",
-    "415193658de4165f774fc8c3b80be3a5"
+    "415193658de4165f774fc8c3b80be3a5",
+    "41a80592eef249f451689884cdf70137"
   ]
 }
