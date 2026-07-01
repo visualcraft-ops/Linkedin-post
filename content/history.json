@@ -249,6 +249,17 @@
       "published": true,
       "post_urn": "urn:li:share:7478067461519511552",
       "type": "text"
+    },
+    {
+      "date": "2026-07-01",
+      "session": "evening",
+      "topic": "Retail Life",
+      "style": "relatable_story",
+      "file": "2026-07-01_evening_retail-life.md",
+      "hash": "ef1bb6063be93ba69fba66b1ce607a01",
+      "published": true,
+      "post_urn": "urn:li:share:7478172188236210176",
+      "type": "text"
     }
   ],
   "hashes": [
@@ -274,6 +285,7 @@
     "d8084243e3a1d80d06bb5080c9d36235",
     "415193658de4165f774fc8c3b80be3a5",
     "41a80592eef249f451689884cdf70137",
-    "7519106fd11806e4a2bbe9def9f71474"
+    "7519106fd11806e4a2bbe9def9f71474",
+    "ef1bb6063be93ba69fba66b1ce607a01"
   ]
 }
