@@ -3,7 +3,7 @@
 profile:
   name: "Preethi Prasanna"
   experience: "8+ years"
-  domain: "Visual Merchandising, Store Operations, HR"
+  domain: "Visual Merchandising, Vendor Management, Store Operations"
   location: "Bengaluru, India"
 
 schedule:
@@ -29,9 +29,9 @@ ai:
 
 calendar:
   monday: { topic: "Visual Merchandising", style: "Tips & Best Practices" }
-  tuesday: { topic: "HR & Recruitment", style: "Thought Leadership" }
+  tuesday: { topic: "Vendor Management", style: "Thought Leadership" }
   wednesday: { topic: "Engagement", style: "Poll / Question" }
-  thursday: { topic: "Store Operations", style: "Case Study / Story" }
-  friday: { topic: "Career & Leadership", style: "Personal Insight" }
-  saturday: { topic: "Employee Engagement", style: "Quick Tip" }
-  sunday: { topic: "Industry Trends", style: "Weekly Roundup" }
+  thursday: { topic: "Store Operations & VM Execution", style: "Case Study / Story" }
+  friday: { topic: "Retail Branding & Display Strategy", style: "Personal Insight" }
+  saturday: { topic: "Vendor Negotiation & Sourcing", style: "Quick Tip" }
+  sunday: { topic: "Industry Trends & VM Innovation", style: "Weekly Roundup" }

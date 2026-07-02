@@ -24,22 +24,22 @@ POST_SESSION = os.environ.get("POST_SESSION", "morning")
 
 MORNING_CALENDAR = {
     0: {"topic": "Visual Merchandising", "style": "actionable_tips"},
-    1: {"topic": "HR & People Management", "style": "thought_leadership"},
-    2: {"topic": "Store Operations", "style": "case_study"},
-    3: {"topic": "Career & Leadership", "style": "personal_story"},
-    4: {"topic": "Employee Engagement", "style": "framework"},
-    5: {"topic": "Retail Strategy", "style": "contrarian_take"},
-    6: {"topic": "Industry Trends", "style": "future_prediction"},
+    1: {"topic": "Vendor Management", "style": "thought_leadership"},
+    2: {"topic": "Store Operations & VM Execution", "style": "case_study"},
+    3: {"topic": "Retail Branding & Display Strategy", "style": "personal_story"},
+    4: {"topic": "Vendor Negotiation & Sourcing", "style": "framework"},
+    5: {"topic": "VM Trends & Innovation", "style": "contrarian_take"},
+    6: {"topic": "Industry Trends & Retail Tech", "style": "future_prediction"},
 }
 
 EVENING_CALENDAR = {
     0: {"topic": "Quick VM Tip", "style": "micro_content"},
-    1: {"topic": "HR Hot Take", "style": "debate_starter"},
-    2: {"topic": "Retail Life", "style": "relatable_story"},
-    3: {"topic": "Career Advice", "style": "poll"},
-    4: {"topic": "Team Culture", "style": "gratitude_post"},
-    5: {"topic": "Weekend Wisdom", "style": "listicle"},
-    6: {"topic": "Week Ahead", "style": "poll"},
+    1: {"topic": "Vendor Management Insight", "style": "debate_starter"},
+    2: {"topic": "Retail Display Life", "style": "relatable_story"},
+    3: {"topic": "VM Career Growth", "style": "poll"},
+    4: {"topic": "Store Launch Stories", "style": "gratitude_post"},
+    5: {"topic": "Weekend VM Inspiration", "style": "listicle"},
+    6: {"topic": "Week Ahead Planning", "style": "poll"},
 }
 
 HOOKS = {
@@ -47,132 +47,148 @@ HOOKS = {
         "Stop doing this with your store displays.\n\nI see it everywhere →",
         "3 VM changes that increased our footfall by 40%.\n\nNone of them cost money →",
         "Your mannequins are lying to customers.\n\nHere's what I mean →",
-        "I set up 5 stores this year. Same mistake in all of them at first →",
+        "I set up 5 stores this year. Same display mistake in all of them at first →",
         "The window display formula that works every single time →",
+        "Most VM teams waste 60% of their fixture budget.\n\nHere's the fix →",
+        "One lighting change. 28% more dwell time.\n\nThe technique →",
     ],
     "thought_leadership": [
-        "HR in retail is broken.\n\nHere's what nobody wants to admit →",
-        "We hire for experience. We should hire for energy.\n\nLet me explain →",
-        "The real reason retail attrition is 60%+?\n\nIt's not the salary →",
-        "I've onboarded 100+ retail staff. The ones who stayed all had ONE thing in common →",
-        "Unpopular opinion: Most retail training programs are a waste of time.\n\nHere's why →",
+        "Vendor management in retail is broken.\n\nHere's what nobody wants to admit →",
+        "We negotiate price. We should negotiate partnership.\n\nLet me explain →",
+        "The real reason your vendor deliveries are always late?\n\nIt's not logistics →",
+        "I've managed 50+ vendors across 5 store launches. The ones who deliver all have ONE thing in common →",
+        "Unpopular opinion: Your cheapest vendor is your most expensive one.\n\nHere's why →",
+        "90% of vendor conflicts happen because of THIS one missing step →",
+        "The vendor who charges 15% more just saved my store launch.\n\nLet me explain →",
     ],
     "case_study": [
         "Day 1 of a new store launch.\n\nEverything that can go wrong, did →",
         "We had 48 hours to redesign an entire store. Here's what happened →",
         "A ₹200 change in our display increased sales by 25%.\n\nThe story →",
-        "The store was losing ₹3L/month. One operational change fixed it →",
-        "I inherited a team that hated their jobs. 90 days later, zero attrition.\n\nHere's the playbook →",
+        "The store was losing footfall daily. One VM change fixed it →",
+        "Our vendor missed the deadline by 3 days.\n\nHow I still launched on time →",
+        "2 stores. Same brand. Different VM execution.\n\nThe results shocked us →",
     ],
     "personal_story": [
-        "8 years ago, I was arranging mannequins.\n\nToday I build retail teams.\n\nHere's the messy middle →",
-        "My worst day in retail taught me my best lesson →",
+        "8 years ago, I was arranging mannequins.\n\nToday I design retail experiences.\n\nHere's the messy middle →",
+        "My worst vendor negotiation taught me my best lesson →",
         "I almost quit retail in 2019.\n\nGlad I didn't. Here's what changed →",
         "Nobody in my family understood what 'Visual Merchandising' meant.\n\nNow they do →",
-        "The feedback that changed my entire career trajectory →",
+        "The display that got rejected 3 times became our highest-performing setup →",
+        "From fixture planning to full store launches — my 8-year evolution →",
     ],
     "framework": [
-        "My 3-step framework for building engaged retail teams:\n\n(Steal this) →",
-        "The CARE framework I use for employee onboarding:\n\nC.A.R.E. →",
-        "How I run a store launch in 30 days (step-by-step) →",
-        "The 5-5-5 rule that keeps my team motivated:\n\n5 minutes, 5 words, 5 days →",
-        "Want a high-performing store team? Use this matrix →",
+        "My 3-step framework for vendor evaluation:\n\n(Steal this) →",
+        "The Q-C-D framework I use for every vendor onboarding:\n\nQuality. Cost. Delivery →",
+        "How I plan a store launch VM in 30 days (step-by-step) →",
+        "The 5-point vendor scorecard that eliminated 80% of our delays →",
+        "Want flawless VM execution? Use this vendor briefing template →",
+        "My planogram-to-execution checklist that never fails →",
     ],
     "contrarian_take": [
-        "Hot take: Beautiful stores with bad teams will ALWAYS lose.\n\nFight me on this →",
-        "Controversial: VM is not about making things 'look pretty'.\n\nIt's about →",
-        "Everyone's obsessed with digital. I think physical retail will win.\n\nHere's my case →",
-        "Stop blaming Gen Z for retail attrition.\n\nThe problem is YOUR onboarding →",
-        "The 'customer is always right' is destroying retail teams.\n\nHere's a better approach →",
+        "Hot take: The prettiest store display is often the worst performer.\n\nFight me on this →",
+        "Controversial: VM is not about aesthetics.\n\nIt's about conversion →",
+        "Everyone's chasing digital. Physical retail will outlast it all.\n\nHere's my case →",
+        "Stop blaming vendors for delays.\n\nThe problem is YOUR brief →",
+        "The 'lowest quote wins' approach is destroying retail quality.\n\nHere's a better way →",
+        "Your VM team doesn't need more budget.\n\nThey need better vendor relationships →",
     ],
     "future_prediction": [
-        "Retail in 2030 will look NOTHING like today.\n\n5 predictions →",
-        "3 retail roles that won't exist in 5 years.\n\nAnd 3 new ones that will →",
-        "AI is coming for VM. But not how you think →",
-        "The future of HR in retail isn't human.\n\nOr is it? 🤔 →",
-        "Physical stores aren't dying. They're evolving into something bigger →",
+        "Retail VM in 2030 will look NOTHING like today.\n\n5 predictions →",
+        "3 vendor management roles that won't exist in 5 years.\n\nAnd 3 new ones that will →",
+        "AI is coming for Visual Merchandising. But not how you think →",
+        "The future of vendor management is data-driven.\n\nHere's what that means →",
+        "Physical stores aren't dying. They're evolving into experience centers →",
+        "Sustainable VM materials will be mandatory by 2028.\n\nAre your vendors ready? →",
     ],
     "micro_content": [
         "Quick VM tip that takes 2 minutes ⚡\n\n→",
-        "One thing I do every Monday that transforms the week →",
-        "The smallest change with the biggest impact in any store →",
-        "60-second store audit trick I use every single day →",
+        "One thing I do every Monday that transforms the store week →",
+        "The smallest display change with the biggest ROI →",
+        "60-second store walk trick I use every single day →",
+        "Before you call your vendor — check this first →",
     ],
     "debate_starter": [
         "Agree or disagree?\n\n→",
-        "I said this in a meeting and the room went silent →",
-        "This might be my most controversial retail opinion →",
-        "Tell me I'm wrong about this →",
+        "I said this in a vendor meeting and the room went silent →",
+        "This might be my most controversial vendor management opinion →",
+        "Tell me I'm wrong about this VM approach →",
+        "Every VM manager debates this. Where do you stand? →",
     ],
     "relatable_story": [
-        "Retail life. Nobody tells you about these moments →",
-        "When the delivery arrives 30 mins before store opening 😅\n\nRetail people, you know →",
-        "That moment when the customer asks for something you JUST moved from the display →",
-        "Retail managers on a Monday vs Friday.\n\nA thread →",
+        "Retail VM life. Nobody tells you about these moments →",
+        "When the fixture delivery arrives 30 mins before store opening 😅\n\nVM people, you know →",
+        "That moment when the brand team changes the planogram AFTER you've set up the display →",
+        "VM managers on launch day vs 3 days before launch.\n\nA thread →",
+        "When the vendor says 'slight delay' and you know exactly what that means →",
     ],
     "gratitude_post": [
-        "Shoutout to every retail team member who →",
-        "The unsung heroes of retail are the people who →",
-        "Something I don't say enough to my team →",
+        "Shoutout to every vendor partner who delivers on impossible timelines →",
+        "The unsung heroes of retail are the people who build what we design →",
+        "Something I don't say enough to my vendor partners →",
+        "Behind every successful store launch is a vendor who went above and beyond →",
     ],
     "listicle": [
-        "7 things I learned this week in retail →",
-        "5 books that made me a better retail leader →",
-        "4 habits of the best store managers I've worked with →",
+        "7 things I learned this week about retail displays →",
+        "5 vendor management lessons from 8 years in retail →",
+        "4 habits of the best VM professionals I've worked with →",
+        "6 signs your vendor relationship is about to go wrong →",
     ],
     "poll": [],
 }
 
 
 POLL_TEMPLATES = [
-    {"commentary": "Every retailer debates this. Let's settle it 👇\n\n#RetailStrategy #VisualMerchandising #StoreOperations", "question": "What drives more footfall to a store?", "options": ["Window displays", "Social media ads", "Word of mouth", "Location"]},
-    {"commentary": "Honest answers only! 🙌\n\nWhat's YOUR biggest challenge in retail hiring?\n\n#HRCommunity #Recruitment #RetailHR", "question": "Biggest retail hiring challenge?", "options": ["High attrition", "Finding skilled staff", "Budget constraints", "Cultural fit"]},
-    {"commentary": "Store launch veterans — what's your priority? 🎯\n\n#StoreOperations #RetailExcellence #NewStore", "question": "Most critical for store launch?", "options": ["Perfect displays", "Trained team", "Marketing buzz", "Inventory ready"]},
-    {"commentary": "Career growth in retail looks different for everyone 🚀\n\n#CareerGrowth #RetailCareers #Leadership", "question": "Best skill for retail career growth?", "options": ["People management", "Visual merchandising", "Data analytics", "Customer empathy"]},
-    {"commentary": "Low-budget engagement wins. What works best? 💡\n\n#EmployeeEngagement #TeamBuilding #WorkplaceCulture", "question": "What motivates retail teams most?", "options": ["Public recognition", "Growth opportunities", "Flexible hours", "Team outings"]},
-    {"commentary": "VM people — this one's for you! 🎨\n\n#VisualMerchandising #RetailDisplay #VMTips", "question": "What stops a customer at a window?", "options": ["Bold lighting", "Minimalist design", "Storytelling", "Color contrast"]},
-    {"commentary": "The future is coming fast 🚀 Where's your bet?\n\n#RetailTrends #FutureOfWork #Innovation", "question": "Which trend dominates retail next?", "options": ["AI-powered VM", "Experiential stores", "Sustainability", "Omnichannel"]},
-    {"commentary": "First-week onboarding shapes everything 🎯\n\n#Onboarding #HRTips #EmployeeExperience", "question": "Most important in onboarding week 1?", "options": ["Buddy system", "Brand immersion", "Role clarity", "Team intros"]},
-    {"commentary": "Monday morning debate for my retail network ☕\n\n#RetailLife #StoreManagement #RetailDebate", "question": "What makes a great store manager?", "options": ["Team builder", "Problem solver", "Customer-first", "Detail-oriented"]},
-    {"commentary": "Settling this once and for all 🔥\n\n#VisualMerchandising #Retail #StoreDesign", "question": "More impact on store sales?", "options": ["Window display", "In-store layout", "Music & scent", "Staff energy"]},
+    {"commentary": "Every retailer debates this. Let's settle it 👇\n\n#VisualMerchandising #RetailDisplay #StoreDesign #VMStrategy", "question": "What drives more in-store conversions?", "options": ["Window displays", "In-store signage", "Product placement", "Lighting design"]},
+    {"commentary": "Vendor managers — honest answers only! 🙌\n\n#VendorManagement #RetailSourcing #SupplyChain #RetailOps", "question": "Biggest vendor management challenge?", "options": ["On-time delivery", "Quality consistency", "Cost negotiation", "Communication gaps"]},
+    {"commentary": "Store launch veterans — what's your priority? 🎯\n\n#StoreLaunch #VisualMerchandising #RetailExcellence #VMExecution", "question": "Most critical for store launch success?", "options": ["VM fixtures on time", "Vendor coordination", "Planogram accuracy", "Team readiness"]},
+    {"commentary": "VM professionals — where do you see the biggest growth? 🚀\n\n#VMCareer #RetailCareers #VisualMerchandising #CareerGrowth", "question": "Best skill for VM career growth?", "options": ["Vendor management", "3D design tools", "Data analytics", "Brand strategy"]},
+    {"commentary": "Budget season conversations 💡\n\n#RetailBudget #VendorNegotiation #VMStrategy #CostOptimization", "question": "Where to invest VM budget first?", "options": ["Lighting upgrades", "Premium fixtures", "Digital displays", "Better vendors"]},
+    {"commentary": "VM people — this one's for you! 🎨\n\n#VisualMerchandising #RetailDisplay #WindowDisplay #VMTips", "question": "What stops a customer at a window?", "options": ["Bold lighting", "Minimalist design", "Storytelling theme", "Color contrast"]},
+    {"commentary": "The future is coming fast 🚀 Where's your bet?\n\n#RetailTrends #VMInnovation #RetailTech #FutureOfRetail", "question": "Which trend dominates VM next?", "options": ["AI-powered displays", "Sustainable materials", "Interactive tech", "Hyper-local themes"]},
+    {"commentary": "Vendor relationships make or break execution 🎯\n\n#VendorManagement #RetailPartners #SupplyChain #Procurement", "question": "What makes a great retail vendor?", "options": ["Reliable delivery", "Quality materials", "Flexible pricing", "Proactive solutions"]},
+    {"commentary": "Monday morning debate for my retail VM network ☕\n\n#RetailLife #VisualMerchandising #StoreOperations #VMDebate", "question": "What defines great VM execution?", "options": ["Brand consistency", "Customer flow", "Revenue impact", "Speed of setup"]},
+    {"commentary": "Settling this once and for all 🔥\n\n#VisualMerchandising #Retail #StoreDesign #VMImpact", "question": "More impact on store performance?", "options": ["Window display", "In-store layout", "Fixture quality", "Signage strategy"]},
 ]
 
 HASHTAGS = {
-    "Visual Merchandising": ["#VisualMerchandising", "#RetailDisplay", "#StoreDesign", "#VMTips", "#WindowDisplay", "#RetailExperience"],
-    "HR & People Management": ["#HumanResources", "#Recruitment", "#TalentAcquisition", "#PeopleFirst", "#RetailHR", "#Hiring"],
-    "Store Operations": ["#RetailOperations", "#StoreManagement", "#RetailExcellence", "#CustomerExperience", "#RetailStrategy"],
-    "Career & Leadership": ["#Leadership", "#CareerGrowth", "#ProfessionalDevelopment", "#CareerAdvice", "#GrowthMindset", "#WomenInRetail"],
-    "Employee Engagement": ["#EmployeeEngagement", "#WorkplaceCulture", "#TeamBuilding", "#EmployeeExperience", "#PeopleMatter"],
-    "Retail Strategy": ["#RetailStrategy", "#RetailInnovation", "#CustomerExperience", "#RetailGrowth", "#RetailLeadership"],
-    "Industry Trends": ["#FutureOfWork", "#RetailTrends", "#HRTrends", "#Innovation", "#DigitalTransformation", "#RetailTech"],
-    "Quick VM Tip": ["#VMTips", "#VisualMerchandising", "#RetailHacks", "#StoreDisplay"],
-    "HR Hot Take": ["#HRCommunity", "#RetailHR", "#TalentManagement", "#HotTake"],
-    "Retail Life": ["#RetailLife", "#RetailProblems", "#StoreLife", "#RetailHumor"],
-    "Career Advice": ["#CareerTips", "#RetailCareers", "#ProfessionalGrowth", "#Mentoring"],
-    "Team Culture": ["#TeamCulture", "#WorkplaceWellbeing", "#RetailTeams", "#Gratitude"],
-    "Weekend Wisdom": ["#WeekendWisdom", "#RetailLearnings", "#SaturdayThoughts", "#GrowthMindset"],
-    "Week Ahead": ["#MondayMotivation", "#WeekAhead", "#RetailGoals", "#NewWeek"],
+    "Visual Merchandising": ["#VisualMerchandising", "#RetailDisplay", "#StoreDesign", "#VMTips", "#WindowDisplay", "#RetailExperience", "#VMStrategy"],
+    "Vendor Management": ["#VendorManagement", "#RetailSourcing", "#SupplyChain", "#Procurement", "#VendorRelations", "#RetailPartners", "#StrategicSourcing"],
+    "Store Operations & VM Execution": ["#RetailOperations", "#StoreManagement", "#RetailExcellence", "#VMExecution", "#StoreLaunch", "#RetailStrategy"],
+    "Retail Branding & Display Strategy": ["#RetailBranding", "#DisplayStrategy", "#BrandExperience", "#StoreDesign", "#RetailMarketing", "#InStoreExperience"],
+    "Vendor Negotiation & Sourcing": ["#VendorNegotiation", "#RetailSourcing", "#CostOptimization", "#Procurement", "#SupplyChainManagement", "#RetailBusiness"],
+    "VM Trends & Innovation": ["#VMInnovation", "#RetailTech", "#SustainableRetail", "#RetailDesign", "#FutureOfRetail", "#SmartRetail"],
+    "Industry Trends & Retail Tech": ["#RetailTrends", "#RetailInnovation", "#FutureOfRetail", "#RetailTech", "#DigitalRetail", "#RetailTransformation"],
+    "Quick VM Tip": ["#VMTips", "#VisualMerchandising", "#RetailHacks", "#StoreDisplay", "#QuickTip"],
+    "Vendor Management Insight": ["#VendorManagement", "#RetailOps", "#SupplyChain", "#VendorStrategy", "#RetailInsight"],
+    "Retail Display Life": ["#RetailLife", "#VMLife", "#StoreDisplay", "#RetailHumor", "#VisualMerchandising"],
+    "VM Career Growth": ["#VMCareer", "#RetailCareers", "#VisualMerchandising", "#CareerGrowth", "#ProfessionalDevelopment"],
+    "Store Launch Stories": ["#StoreLaunch", "#RetailExpansion", "#NewStore", "#RetailGrowth", "#VMExecution"],
+    "Weekend VM Inspiration": ["#VMInspiration", "#RetailDesign", "#WeekendCreativity", "#DisplayIdeas", "#VisualMerchandising"],
+    "Week Ahead Planning": ["#WeekAhead", "#RetailPlanning", "#VMStrategy", "#MondayMotivation", "#RetailGoals"],
 }
 
 CREATOR_TAGS = {
     "Visual Merchandising": ["Retail design enthusiasts", "VM community", "Store designers and merchandisers"],
-    "HR & People Management": ["HR leaders in retail", "People-first leaders", "Talent acquisition community"],
-    "Store Operations": ["Retail ops professionals", "Store managers", "Retail leaders"],
-    "Career & Leadership": ["Career coaches", "Women in retail leadership", "Professional development community"],
-    "Employee Engagement": ["People & culture leaders", "Workplace culture advocates", "Employee experience community"],
+    "Vendor Management": ["Vendor management professionals", "Retail procurement leaders", "Supply chain community"],
+    "Store Operations & VM Execution": ["Retail ops professionals", "Store launch experts", "VM execution specialists"],
+    "Retail Branding & Display Strategy": ["Brand experience designers", "Retail marketing leaders", "Display strategy community"],
+    "Vendor Negotiation & Sourcing": ["Procurement professionals", "Retail sourcing leaders", "Cost optimization experts"],
+    "VM Trends & Innovation": ["Retail innovation leaders", "VM tech enthusiasts", "Future-of-retail thinkers"],
+    "Industry Trends & Retail Tech": ["Retail tech community", "Innovation leaders", "Digital retail professionals"],
 }
 
 BOOST_COMMENTS = [
-    "Curious to hear from people who've been in retail 5+ years — has this changed for you?",
-    "Also worth noting: this applies differently in tier-1 vs tier-2 cities. Would love to hear regional perspectives.",
-    "For anyone starting in retail — bookmark this. I wish someone told me this on day 1.",
+    "Curious to hear from VM professionals with 5+ years experience — has vendor coordination changed for you?",
+    "Also worth noting: this applies differently in metro vs tier-2 city retail. Would love to hear regional perspectives.",
+    "For anyone starting in Visual Merchandising — bookmark this. I wish someone told me this on day 1.",
     "The responses here are gold 🙌 Keep them coming — learning from all of you.",
-    "Follow-up thought: the best part about sharing here is realizing how many of us face the same challenges daily.",
-    "Retail friends — tag someone who needs to see this today 👇",
-    "This sparked a great conversation in my DMs too. If you want to discuss further, feel free to connect!",
-    "Adding context: this is based on my experience in premium retail (Portico, lifestyle brands). May differ for value retail.",
+    "Follow-up thought: the best part about sharing here is realizing how many of us face the same vendor challenges daily.",
+    "VM and retail friends — tag someone who needs to see this today 👇",
+    "This sparked a great conversation in my DMs too. If you want to discuss VM strategies further, feel free to connect!",
+    "Adding context: this is based on my experience in premium retail (Reliance, lifestyle brands). May differ for value retail.",
     "Quick clarification from the comments — yes, this works for both large format and standalone stores.",
-    "Loving the different perspectives here! The retail community on LinkedIn is genuinely one of the best 🙌",
+    "Loving the different perspectives here! The VM and retail community on LinkedIn is genuinely one of the best 🙌",
 ]
 
 
@@ -201,7 +217,7 @@ def get_today_config():
 def build_prompt(topic, style):
     hooks = HOOKS.get(style, HOOKS["actionable_tips"])
     hook = random.choice(hooks) if hooks else ""
-    tags = " ".join(random.sample(HASHTAGS.get(topic, HASHTAGS["Career & Leadership"]), min(4, len(HASHTAGS.get(topic, [])))))
+    tags = " ".join(random.sample(HASHTAGS.get(topic, HASHTAGS["Visual Merchandising"]), min(4, len(HASHTAGS.get(topic, [])))))
 
     session_ctx = ""
     if POST_SESSION == "evening":
@@ -209,7 +225,7 @@ def build_prompt(topic, style):
     else:
         session_ctx = "- MORNING post: professional, value-driven, 150-250 words"
 
-    return f"""Write a LinkedIn post AS Preethi Prasanna — 8+ years in Visual Merchandising & Store Operations, expanding into HR/People Management. Worked on store launches, built teams, managed VM for premium retail brands in India.
+    return f"""Write a LinkedIn post AS Preethi Prasanna — 8+ years in Visual Merchandising, Vendor Management & Store Operations. Expert in store launches, VM execution, vendor coordination, fixture sourcing, and retail branding for premium brands in India (Reliance Retail, Landmark Group, Future Group).
 
 Topic: {topic} | Style: {style}
 Opening hook (adapt): "{hook}"
@@ -223,8 +239,10 @@ RULES:
 - 4 hashtags at end: {tags}
 - 2-3 emojis max
 - Write like a real person, NOT a corporate comms team
+- Focus on practical VM insights, vendor management wisdom, or retail display strategy
+- Content should attract recruiters looking for VM/Vendor Management professionals
 
-NEVER: Start with "I", use "In today's fast-paced world", sound like ChatGPT, exceed 250 words.
+NEVER: Start with "I", use "In today's fast-paced world", sound like ChatGPT, exceed 250 words, mention HR/recruitment/hiring topics.
 
 Output ONLY the post text."""
 
@@ -251,11 +269,11 @@ def generate_with_gemini(prompt):
 def generate_fallback(topic, style):
     """Fallback templates when API unavailable."""
     templates = [
-        f"Stop scrolling.\n\nIf you're in retail, this will save you hours.\n\nAfter 5+ store launches, here's my cheat sheet for {topic.lower()}:\n\n→ Start with your customer's eye level\n→ Change displays every 14 days (not when you feel like it)\n→ Train your team on WHY, not just HOW\n→ Measure footfall before/after every change\n\nThe stores that win aren't doing anything revolutionary.\nThey're doing the basics consistently.\n\nWhich one do you struggle with most? 👇\n\n#VisualMerchandising #RetailOperations #StoreManagement #RetailTips",
-        f"The biggest myth in retail?\n\n'Good VM sells itself.'\n\nNo. Good VM + trained staff + right energy = sales.\n\nI've seen stores with stunning displays and zero conversions.\nI've seen stores with basic VM but incredible teams crushing targets.\n\nThe difference isn't the display.\nIt's the team behind it.\n\n{topic} is a team sport. Build accordingly.\n\nAgree? Disagree? Tell me 👇\n\n#RetailExcellence #TeamBuilding #VisualMerchandising #StoreOperations",
-        f"Real talk about {topic.lower()}.\n\nNobody posts about the failures. So let me go first.\n\nI once spent 3 days perfecting a store display.\nCustomers walked past it without a second glance.\n\nThe fix? I asked a customer what they were looking for.\nRebuilt the display around THEIR journey in 2 hours.\n\nResult: 35% increase in dwell time.\n\nLesson: We design for Instagram. We should design for customers.\n\nWhat's a retail fail that taught you something? 👇\n\n#RetailLearning #VisualMerchandising #CustomerFirst #RetailTips",
-        f"Here's a {topic.lower()} reminder that costs ₹0:\n\n1. Your team mirrors your energy (check yours first)\n2. One small display change > zero changes while waiting for 'the big revamp'\n3. Ask your newest team member what confuses them\n4. Document what works (future you will thank present you)\n\nSimple? Yes.\nDoes everyone do it? No.\n\nThat's the edge.\n\nWhich one are you implementing this week? 👇\n\n#RetailLeadership #StoreOperations #RetailTips #RetailExcellence",
-        f"Quiet confession from 8 years in retail:\n\nThe best store I ever managed wasn't the most beautiful one.\n\nIt was the one where:\n→ Every team member greeted by name\n→ The stockroom was organized (not just the floor)\n→ We celebrated small wins loudly\n→ Training happened daily, not quarterly\n\nRetail success isn't a visual. It's a feeling.\n\nYour customers feel what your team feels.\n\nBuild the team first. The aesthetics follow.\n\nWhat made YOUR best store 'the best'? 👇\n\n#RetailExcellence #TeamCulture #StoreOperations #EmployeeEngagement",
+        f"Stop scrolling.\n\nIf you're in retail VM, this will save you hours.\n\nAfter 5+ store launches, here's my cheat sheet for {topic.lower()}:\n\n→ Start with your customer's eye level\n→ Change displays every 14 days (not when you feel like it)\n→ Brief your vendors with visual references, not just text\n→ Measure footfall before/after every display change\n\nThe stores that win aren't doing anything revolutionary.\nThey're doing the basics consistently.\n\nWhich one do you struggle with most? 👇\n\n#VisualMerchandising #VendorManagement #StoreOperations #RetailTips",
+        f"The biggest myth in retail?\n\n'Good VM sells itself.'\n\nNo. Good VM + reliable vendors + right execution = sales.\n\nI've seen stores with stunning designs but terrible vendor delivery.\nI've seen stores with basic VM but rock-solid vendor partnerships crushing targets.\n\nThe difference isn't the design.\nIt's the vendor relationship behind it.\n\n{topic} is a partnership game. Build accordingly.\n\nAgree? Disagree? Tell me 👇\n\n#RetailExcellence #VendorManagement #VisualMerchandising #VMExecution",
+        f"Real talk about {topic.lower()}.\n\nNobody posts about the vendor failures. So let me go first.\n\nI once spent 2 weeks planning the perfect store display.\nThe fixture vendor delivered wrong specs 2 days before launch.\n\nThe fix? A backup vendor list and a 24-hour turnaround plan.\nWe launched on time. Customers never knew.\n\nResult: Lesson learned — always have Plan B vendors.\n\nWhat's a vendor challenge that taught you something? 👇\n\n#VendorManagement #VisualMerchandising #StoreLaunch #RetailTips",
+        f"Here's a {topic.lower()} reminder that costs ₹0:\n\n1. Visit your vendor's workshop once a quarter (trust builds in person)\n2. Share visual briefs, not just specs (vendors aren't mind-readers)\n3. Pay on time — it's the best negotiation tool you'll ever have\n4. Document what works (future you will thank present you)\n\nSimple? Yes.\nDoes everyone do it? No.\n\nThat's the edge in vendor management.\n\nWhich one are you implementing this week? 👇\n\n#VendorManagement #RetailOperations #VMTips #RetailExcellence",
+        f"Quiet confession from 8 years in retail VM:\n\nThe best store I ever launched wasn't the one with the biggest budget.\n\nIt was the one where:\n→ Vendors were briefed 45 days in advance\n→ Fixtures arrived 5 days before launch (not 5 hours)\n→ We did a mock setup before the real one\n→ Every display had a clear commercial objective\n\nRetail VM success isn't about aesthetics alone. It's about execution.\n\nYour displays are only as good as your vendor partnerships.\n\nBuild the vendor relationships first. The stunning stores follow.\n\nWhat made YOUR best store launch successful? 👇\n\n#VisualMerchandising #VendorManagement #StoreLaunch #RetailStrategy",
     ]
     return random.choice(templates)
 
@@ -417,7 +435,7 @@ def post_self_comment(post_urn):
 
 def add_engagement_tag(content, topic):
     """Add a subtle community callout to boost reach."""
-    tags = CREATOR_TAGS.get(topic, CREATOR_TAGS.get("Career & Leadership", []))
+    tags = CREATOR_TAGS.get(topic, CREATOR_TAGS.get("Visual Merchandising", []))
     if tags and random.random() < 0.6:
         tag = random.choice(tags)
         callouts = [
@@ -439,12 +457,13 @@ def save_post(content, topic, style):
 
 
 def build_poll_prompt(topic):
-    return f"""Generate a LinkedIn POLL for Preethi Prasanna (8+ years Visual Merchandising & Store Ops, expanding to HR).
+    return f"""Generate a LinkedIn POLL for Preethi Prasanna (8+ years Visual Merchandising, Vendor Management & Store Operations).
 Topic: {topic}
 - Commentary: 2-3 punchy lines that make people WANT to vote. Include 3-4 hashtags.
 - Question: max 140 chars, clear and debatable
 - 4 options: max 30 chars each, all valid answers
-- Relevant to Indian retail/HR professionals
+- Relevant to Indian retail/VM/vendor management professionals
+- Should attract attention from recruiters and retail industry leaders
 Output EXACTLY as JSON: {{"commentary": "text", "question": "q?", "options": ["A", "B", "C", "D"]}}"""
 
 
