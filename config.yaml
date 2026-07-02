@@ -29,9 +29,9 @@ ai:
 
 calendar:
   monday: { topic: "Visual Merchandising", style: "Tips & Best Practices" }
-  tuesday: { topic: "Vendor Management", style: "Thought Leadership" }
+  tuesday: { topic: "Vendor Management & Sourcing", style: "Thought Leadership" }
   wednesday: { topic: "Engagement", style: "Poll / Question" }
-  thursday: { topic: "Store Operations & VM Execution", style: "Case Study / Story" }
+  thursday: { topic: "Store Design & Retail Tech", style: "Case Study / Story" }
   friday: { topic: "Retail Branding & Display Strategy", style: "Personal Insight" }
-  saturday: { topic: "Vendor Negotiation & Sourcing", style: "Quick Tip" }
-  sunday: { topic: "Industry Trends & VM Innovation", style: "Weekly Roundup" }
+  saturday: { topic: "Vendor Negotiation & Cost Optimization", style: "Quick Tip" }
+  sunday: { topic: "India Retail Trends & Future of Stores", style: "Weekly Roundup" }

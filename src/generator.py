@@ -24,22 +24,22 @@ POST_SESSION = os.environ.get("POST_SESSION", "morning")
 
 MORNING_CALENDAR = {
     0: {"topic": "Visual Merchandising", "style": "actionable_tips"},
-    1: {"topic": "Vendor Management", "style": "thought_leadership"},
-    2: {"topic": "Store Operations & VM Execution", "style": "case_study"},
+    1: {"topic": "Vendor Management & Sourcing", "style": "thought_leadership"},
+    2: {"topic": "Store Design & Retail Tech", "style": "case_study"},
     3: {"topic": "Retail Branding & Display Strategy", "style": "personal_story"},
-    4: {"topic": "Vendor Negotiation & Sourcing", "style": "framework"},
-    5: {"topic": "VM Trends & Innovation", "style": "contrarian_take"},
-    6: {"topic": "Industry Trends & Retail Tech", "style": "future_prediction"},
+    4: {"topic": "Vendor Negotiation & Cost Optimization", "style": "framework"},
+    5: {"topic": "Sustainable VM & Retail Innovation", "style": "contrarian_take"},
+    6: {"topic": "India Retail Trends & Future of Stores", "style": "future_prediction"},
 }
 
 EVENING_CALENDAR = {
     0: {"topic": "Quick VM Tip", "style": "micro_content"},
-    1: {"topic": "Vendor Management Insight", "style": "debate_starter"},
+    1: {"topic": "Vendor Red Flags & Wins", "style": "debate_starter"},
     2: {"topic": "Retail Display Life", "style": "relatable_story"},
-    3: {"topic": "VM Career Growth", "style": "poll"},
+    3: {"topic": "AI in Visual Merchandising", "style": "poll"},
     4: {"topic": "Store Launch Stories", "style": "gratitude_post"},
     5: {"topic": "Weekend VM Inspiration", "style": "listicle"},
-    6: {"topic": "Week Ahead Planning", "style": "poll"},
+    6: {"topic": "Quick Commerce vs Physical Retail", "style": "poll"},
 }
 
 HOOKS = {
@@ -51,6 +51,9 @@ HOOKS = {
         "The window display formula that works every single time →",
         "Most VM teams waste 60% of their fixture budget.\n\nHere's the fix →",
         "One lighting change. 28% more dwell time.\n\nThe technique →",
+        "94% of first impressions are visual.\n\nYet most stores ignore this →",
+        "Tier-2 cities are booming. But their VM execution is stuck in 2018.\n\nHere's what needs to change →",
+        "Reliance just crossed 20,000 stores.\n\nHere's what their VM gets right that others don't →",
     ],
     "thought_leadership": [
         "Vendor management in retail is broken.\n\nHere's what nobody wants to admit →",
@@ -59,23 +62,30 @@ HOOKS = {
         "I've managed 50+ vendors across 5 store launches. The ones who deliver all have ONE thing in common →",
         "Unpopular opinion: Your cheapest vendor is your most expensive one.\n\nHere's why →",
         "90% of vendor conflicts happen because of THIS one missing step →",
+        "India added 2,182 new retail stores in FY26.\n\nThe vendor ecosystem isn't keeping up. Here's why →",
+        "Quick commerce is killing vendor timelines.\n\nRetail sourcing needs a complete rethink →",
         "The vendor who charges 15% more just saved my store launch.\n\nLet me explain →",
+        "Near-shoring is changing everything in retail sourcing.\n\nAre you ready? →",
     ],
     "case_study": [
         "Day 1 of a new store launch.\n\nEverything that can go wrong, did →",
-        "We had 48 hours to redesign an entire store. Here's what happened →",
+        "We had 48 hours to redesign an entire store for a tier-2 city. Here's what happened →",
         "A ₹200 change in our display increased sales by 25%.\n\nThe story →",
-        "The store was losing footfall daily. One VM change fixed it →",
+        "The store was losing footfall to quick commerce. One VM change fixed it →",
         "Our vendor missed the deadline by 3 days.\n\nHow I still launched on time →",
         "2 stores. Same brand. Different VM execution.\n\nThe results shocked us →",
+        "We opened in a city where the brand had zero recall.\n\nVM was our only weapon →",
+        "The planogram said one thing. The local customer wanted another.\n\nWhat I did →",
     ],
     "personal_story": [
         "8 years ago, I was arranging mannequins.\n\nToday I design retail experiences.\n\nHere's the messy middle →",
         "My worst vendor negotiation taught me my best lesson →",
-        "I almost quit retail in 2019.\n\nGlad I didn't. Here's what changed →",
         "Nobody in my family understood what 'Visual Merchandising' meant.\n\nNow they do →",
         "The display that got rejected 3 times became our highest-performing setup →",
         "From fixture planning to full store launches — my 8-year evolution →",
+        "I walked into a Zara in 2016 and my entire career changed direction.\n\nHere's what I noticed →",
+        "The moment I realized VM isn't decoration — it's revenue strategy →",
+        "A customer once told me our display 'felt like home'.\n\nThat's when I understood experiential retail →",
     ],
     "framework": [
         "My 3-step framework for vendor evaluation:\n\n(Steal this) →",
@@ -84,6 +94,8 @@ HOOKS = {
         "The 5-point vendor scorecard that eliminated 80% of our delays →",
         "Want flawless VM execution? Use this vendor briefing template →",
         "My planogram-to-execution checklist that never fails →",
+        "The 'Walk-Stop-Buy' framework that transforms any store layout →",
+        "How I evaluate a new vendor in under 1 hour (the 7-point audit) →",
     ],
     "contrarian_take": [
         "Hot take: The prettiest store display is often the worst performer.\n\nFight me on this →",
@@ -91,15 +103,20 @@ HOOKS = {
         "Everyone's chasing digital. Physical retail will outlast it all.\n\nHere's my case →",
         "Stop blaming vendors for delays.\n\nThe problem is YOUR brief →",
         "The 'lowest quote wins' approach is destroying retail quality.\n\nHere's a better way →",
-        "Your VM team doesn't need more budget.\n\nThey need better vendor relationships →",
+        "Sustainability in VM is mostly greenwashing right now.\n\nLet's be honest →",
+        "AI won't replace Visual Merchandisers.\n\nBut it will replace the ones who don't adapt →",
+        "Quick commerce is NOT killing physical stores.\n\nIt's making them MORE important →",
+        "Reliance, DMart, Trent — they're all expanding stores while everyone screams 'digital first'.\n\nThink about that →",
     ],
     "future_prediction": [
         "Retail VM in 2030 will look NOTHING like today.\n\n5 predictions →",
-        "3 vendor management roles that won't exist in 5 years.\n\nAnd 3 new ones that will →",
-        "AI is coming for Visual Merchandising. But not how you think →",
-        "The future of vendor management is data-driven.\n\nHere's what that means →",
-        "Physical stores aren't dying. They're evolving into experience centers →",
+        "AI-powered planograms are already here.\n\nHere's what changes for VM teams →",
+        "The future of vendor management is real-time, data-driven, and automated.\n\nHere's what that means →",
+        "Physical stores aren't dying. They're becoming experience centers →",
         "Sustainable VM materials will be mandatory by 2028.\n\nAre your vendors ready? →",
+        "India will add 10,000+ organized retail stores by 2028.\n\nThe VM talent gap is going to be massive →",
+        "Agentic AI is coming for retail merchandising.\n\nMcKinsey and BCG agree. Here's what it means for VM →",
+        "The store of 2030: AR wayfinding, adaptive displays, zero-waste fixtures.\n\nWho's building it? →",
     ],
     "micro_content": [
         "Quick VM tip that takes 2 minutes ⚡\n\n→",
@@ -107,6 +124,8 @@ HOOKS = {
         "The smallest display change with the biggest ROI →",
         "60-second store walk trick I use every single day →",
         "Before you call your vendor — check this first →",
+        "The 3-second rule in VM that most people forget →",
+        "One question I ask every vendor that reveals everything →",
     ],
     "debate_starter": [
         "Agree or disagree?\n\n→",
@@ -114,6 +133,8 @@ HOOKS = {
         "This might be my most controversial vendor management opinion →",
         "Tell me I'm wrong about this VM approach →",
         "Every VM manager debates this. Where do you stand? →",
+        "Is quick commerce making physical store VM MORE or LESS important? →",
+        "Should retail brands invest in AI planograms or better vendor partnerships? →",
     ],
     "relatable_story": [
         "Retail VM life. Nobody tells you about these moments →",
@@ -121,61 +142,68 @@ HOOKS = {
         "That moment when the brand team changes the planogram AFTER you've set up the display →",
         "VM managers on launch day vs 3 days before launch.\n\nA thread →",
         "When the vendor says 'slight delay' and you know exactly what that means →",
+        "When quick commerce delivers in 10 mins but your store fixture takes 10 weeks 😅 →",
+        "The look on your face when the regional head walks in during a display change →",
     ],
     "gratitude_post": [
         "Shoutout to every vendor partner who delivers on impossible timelines →",
         "The unsung heroes of retail are the people who build what we design →",
         "Something I don't say enough to my vendor partners →",
         "Behind every successful store launch is a vendor who went above and beyond →",
+        "To every carpenter, fabricator, and printer who brings VM to life — thank you →",
     ],
     "listicle": [
         "7 things I learned this week about retail displays →",
         "5 vendor management lessons from 8 years in retail →",
         "4 habits of the best VM professionals I've worked with →",
         "6 signs your vendor relationship is about to go wrong →",
+        "5 sustainable VM materials every retailer should know about in 2026 →",
+        "4 AI tools that are changing Visual Merchandising right now →",
     ],
     "poll": [],
 }
 
 
 POLL_TEMPLATES = [
-    {"commentary": "Every retailer debates this. Let's settle it 👇\n\n#VisualMerchandising #RetailDisplay #StoreDesign #VMStrategy", "question": "What drives more in-store conversions?", "options": ["Window displays", "In-store signage", "Product placement", "Lighting design"]},
-    {"commentary": "Vendor managers — honest answers only! 🙌\n\n#VendorManagement #RetailSourcing #SupplyChain #RetailOps", "question": "Biggest vendor management challenge?", "options": ["On-time delivery", "Quality consistency", "Cost negotiation", "Communication gaps"]},
-    {"commentary": "Store launch veterans — what's your priority? 🎯\n\n#StoreLaunch #VisualMerchandising #RetailExcellence #VMExecution", "question": "Most critical for store launch success?", "options": ["VM fixtures on time", "Vendor coordination", "Planogram accuracy", "Team readiness"]},
-    {"commentary": "VM professionals — where do you see the biggest growth? 🚀\n\n#VMCareer #RetailCareers #VisualMerchandising #CareerGrowth", "question": "Best skill for VM career growth?", "options": ["Vendor management", "3D design tools", "Data analytics", "Brand strategy"]},
-    {"commentary": "Budget season conversations 💡\n\n#RetailBudget #VendorNegotiation #VMStrategy #CostOptimization", "question": "Where to invest VM budget first?", "options": ["Lighting upgrades", "Premium fixtures", "Digital displays", "Better vendors"]},
-    {"commentary": "VM people — this one's for you! 🎨\n\n#VisualMerchandising #RetailDisplay #WindowDisplay #VMTips", "question": "What stops a customer at a window?", "options": ["Bold lighting", "Minimalist design", "Storytelling theme", "Color contrast"]},
-    {"commentary": "The future is coming fast 🚀 Where's your bet?\n\n#RetailTrends #VMInnovation #RetailTech #FutureOfRetail", "question": "Which trend dominates VM next?", "options": ["AI-powered displays", "Sustainable materials", "Interactive tech", "Hyper-local themes"]},
-    {"commentary": "Vendor relationships make or break execution 🎯\n\n#VendorManagement #RetailPartners #SupplyChain #Procurement", "question": "What makes a great retail vendor?", "options": ["Reliable delivery", "Quality materials", "Flexible pricing", "Proactive solutions"]},
-    {"commentary": "Monday morning debate for my retail VM network ☕\n\n#RetailLife #VisualMerchandising #StoreOperations #VMDebate", "question": "What defines great VM execution?", "options": ["Brand consistency", "Customer flow", "Revenue impact", "Speed of setup"]},
-    {"commentary": "Settling this once and for all 🔥\n\n#VisualMerchandising #Retail #StoreDesign #VMImpact", "question": "More impact on store performance?", "options": ["Window display", "In-store layout", "Fixture quality", "Signage strategy"]},
+    {"commentary": "Reliance just crossed 20,000 stores. India added 2,182 stores in FY26.\n\nBut what REALLY makes a new store succeed? 👇\n\n#RetailIndia #StoreLaunch #VisualMerchandising #RetailGrowth", "question": "Most critical for new store success in India?", "options": ["VM & display execution", "Vendor delivery speed", "Local market research", "Team training"]},
+    {"commentary": "Quick commerce delivers in 10 mins. Physical stores take 10 weeks to set up.\n\nSo why are retailers STILL expanding stores? 🤔\n\n#QuickCommerce #PhysicalRetail #RetailStrategy #FutureOfRetail", "question": "Quick commerce vs physical stores — who wins long-term?", "options": ["Physical stores", "Quick commerce", "Hybrid model wins", "Depends on category"]},
+    {"commentary": "AI planograms. AR wayfinding. Agentic merchandising.\n\nBCG and McKinsey are all-in on AI retail. But are VM teams ready? 🚀\n\n#AIinRetail #VisualMerchandising #RetailTech #FutureOfVM", "question": "Will AI replace traditional VM planning?", "options": ["Yes, within 3 years", "Partially — humans + AI", "No, creativity wins", "Too early to say"]},
+    {"commentary": "India's biggest vendor management challenge in 2026 — honest answers only! 🙌\n\n#VendorManagement #RetailSourcing #SupplyChain #IndiaRetail", "question": "Biggest vendor challenge in India retail?", "options": ["On-time delivery", "Quality consistency", "Cost inflation", "Communication gaps"]},
+    {"commentary": "Sustainability is no longer optional. But who pays for sustainable VM fixtures? 💡\n\n#SustainableRetail #GreenVM #RetailInnovation #ESG", "question": "Who should bear cost of sustainable VM?", "options": ["Brand/retailer", "Shared with vendor", "Customer (premium)", "Government subsidies"]},
+    {"commentary": "VM people — the eternal debate! 🎨\n\nDoes storytelling or minimalism sell more in Indian retail?\n\n#VisualMerchandising #RetailDisplay #WindowDisplay #VMStrategy", "question": "What stops Indian customers at a window?", "options": ["Bold storytelling", "Minimalist design", "Festival/cultural themes", "Price-led messaging"]},
+    {"commentary": "Tier-2 and tier-3 cities are driving India's retail boom.\n\nBut VM execution there needs a different playbook 🎯\n\n#Tier2Retail #IndiaRetail #VisualMerchandising #RetailExpansion", "question": "Biggest VM challenge in tier-2 cities?", "options": ["Finding local vendors", "Different aesthetics", "Budget constraints", "Logistics delays"]},
+    {"commentary": "Vendor relationships make or break execution.\n\nAfter 50+ vendor partnerships, here's what I've learned matters most 🎯\n\n#VendorManagement #RetailPartners #SupplyChain #Procurement", "question": "What makes a great retail vendor?", "options": ["Reliable delivery", "Quality materials", "Proactive solutions", "Transparent pricing"]},
+    {"commentary": "The future of store design is being shaped right now 🚀\n\nNeo-Chromatic Minimalism, Sculptural Storytelling, Crafted Materiality...\n\n#StoreDesign #RetailTrends #VMInnovation #RetailDesign", "question": "Which VM trend will dominate 2027?", "options": ["Experiential zones", "AI-adaptive displays", "Sustainable materials", "Hyper-local themes"]},
+    {"commentary": "India's apparel retail is growing 10.5% in FY26.\n\nBut are VM professionals growing with it? Let's check 📊\n\n#RetailCareers #VisualMerchandising #VMCareer #IndiaRetail", "question": "Best career move for VM professionals?", "options": ["Learn AI/data tools", "Vendor management", "Multi-brand experience", "Retail tech skills"]},
+    {"commentary": "Settling this once and for all 🔥\n\nExperience vs aesthetics in physical retail.\n\n#RetailExperience #VisualMerchandising #CustomerExperience #StoreDesign", "question": "What brings customers BACK to a store?", "options": ["Stunning displays", "Personalized experience", "Staff interactions", "Exclusive products"]},
+    {"commentary": "The omnichannel reality:\n\nStores → Ecommerce → Quick commerce\n\nAll need coordinated VM. But who owns it? 🤷\n\n#Omnichannel #RetailStrategy #VisualMerchandising #RetailOps", "question": "Who should own omnichannel VM strategy?", "options": ["Central VM team", "Store managers", "Marketing team", "Dedicated digital+VM role"]},
 ]
 
 HASHTAGS = {
-    "Visual Merchandising": ["#VisualMerchandising", "#RetailDisplay", "#StoreDesign", "#VMTips", "#WindowDisplay", "#RetailExperience", "#VMStrategy"],
-    "Vendor Management": ["#VendorManagement", "#RetailSourcing", "#SupplyChain", "#Procurement", "#VendorRelations", "#RetailPartners", "#StrategicSourcing"],
-    "Store Operations & VM Execution": ["#RetailOperations", "#StoreManagement", "#RetailExcellence", "#VMExecution", "#StoreLaunch", "#RetailStrategy"],
-    "Retail Branding & Display Strategy": ["#RetailBranding", "#DisplayStrategy", "#BrandExperience", "#StoreDesign", "#RetailMarketing", "#InStoreExperience"],
-    "Vendor Negotiation & Sourcing": ["#VendorNegotiation", "#RetailSourcing", "#CostOptimization", "#Procurement", "#SupplyChainManagement", "#RetailBusiness"],
-    "VM Trends & Innovation": ["#VMInnovation", "#RetailTech", "#SustainableRetail", "#RetailDesign", "#FutureOfRetail", "#SmartRetail"],
-    "Industry Trends & Retail Tech": ["#RetailTrends", "#RetailInnovation", "#FutureOfRetail", "#RetailTech", "#DigitalRetail", "#RetailTransformation"],
-    "Quick VM Tip": ["#VMTips", "#VisualMerchandising", "#RetailHacks", "#StoreDisplay", "#QuickTip"],
-    "Vendor Management Insight": ["#VendorManagement", "#RetailOps", "#SupplyChain", "#VendorStrategy", "#RetailInsight"],
-    "Retail Display Life": ["#RetailLife", "#VMLife", "#StoreDisplay", "#RetailHumor", "#VisualMerchandising"],
-    "VM Career Growth": ["#VMCareer", "#RetailCareers", "#VisualMerchandising", "#CareerGrowth", "#ProfessionalDevelopment"],
-    "Store Launch Stories": ["#StoreLaunch", "#RetailExpansion", "#NewStore", "#RetailGrowth", "#VMExecution"],
-    "Weekend VM Inspiration": ["#VMInspiration", "#RetailDesign", "#WeekendCreativity", "#DisplayIdeas", "#VisualMerchandising"],
-    "Week Ahead Planning": ["#WeekAhead", "#RetailPlanning", "#VMStrategy", "#MondayMotivation", "#RetailGoals"],
+    "Visual Merchandising": ["#VisualMerchandising", "#RetailDisplay", "#StoreDesign", "#VMTips", "#WindowDisplay", "#RetailExperience", "#VMStrategy", "#InStoreExperience"],
+    "Vendor Management & Sourcing": ["#VendorManagement", "#RetailSourcing", "#SupplyChain", "#Procurement", "#VendorRelations", "#StrategicSourcing", "#RetailPartners", "#SupplyChainManagement"],
+    "Store Design & Retail Tech": ["#StoreDesign", "#RetailTech", "#AIinRetail", "#SmartRetail", "#RetailInnovation", "#RetailExperience", "#OmnichannelRetail", "#DigitalRetail"],
+    "Retail Branding & Display Strategy": ["#RetailBranding", "#DisplayStrategy", "#BrandExperience", "#InStoreMarketing", "#RetailMarketing", "#CustomerExperience", "#ExperientialRetail"],
+    "Vendor Negotiation & Cost Optimization": ["#VendorNegotiation", "#CostOptimization", "#RetailSourcing", "#Procurement", "#RetailBusiness", "#SupplyChainIndia", "#RetailOperations"],
+    "Sustainable VM & Retail Innovation": ["#SustainableRetail", "#GreenRetail", "#VMInnovation", "#EcoFriendlyDesign", "#RetailESG", "#CircularRetail", "#SustainableDesign", "#FutureOfRetail"],
+    "India Retail Trends & Future of Stores": ["#IndiaRetail", "#RetailTrends", "#FutureOfRetail", "#RetailGrowth", "#RetailTransformation", "#Tier2Retail", "#RetailExpansion", "#RetailIndia"],
+    "Quick VM Tip": ["#VMTips", "#VisualMerchandising", "#RetailHacks", "#StoreDisplay", "#QuickTip", "#RetailLife"],
+    "Vendor Red Flags & Wins": ["#VendorManagement", "#RetailOps", "#SupplyChain", "#VendorStrategy", "#RetailInsight", "#RetailWins"],
+    "Retail Display Life": ["#RetailLife", "#VMLife", "#StoreDisplay", "#RetailHumor", "#VisualMerchandising", "#RetailCommunity"],
+    "AI in Visual Merchandising": ["#AIinRetail", "#VisualMerchandising", "#RetailTech", "#AgenticAI", "#SmartRetail", "#FutureOfVM", "#RetailInnovation"],
+    "Store Launch Stories": ["#StoreLaunch", "#RetailExpansion", "#NewStore", "#RetailGrowth", "#VMExecution", "#IndiaRetail"],
+    "Weekend VM Inspiration": ["#VMInspiration", "#RetailDesign", "#WeekendCreativity", "#DisplayIdeas", "#VisualMerchandising", "#StoreDesign"],
+    "Quick Commerce vs Physical Retail": ["#QuickCommerce", "#PhysicalRetail", "#RetailDebate", "#FutureOfRetail", "#IndiaRetail", "#RetailStrategy", "#Omnichannel"],
 }
 
 CREATOR_TAGS = {
-    "Visual Merchandising": ["Retail design enthusiasts", "VM community", "Store designers and merchandisers"],
-    "Vendor Management": ["Vendor management professionals", "Retail procurement leaders", "Supply chain community"],
-    "Store Operations & VM Execution": ["Retail ops professionals", "Store launch experts", "VM execution specialists"],
-    "Retail Branding & Display Strategy": ["Brand experience designers", "Retail marketing leaders", "Display strategy community"],
-    "Vendor Negotiation & Sourcing": ["Procurement professionals", "Retail sourcing leaders", "Cost optimization experts"],
-    "VM Trends & Innovation": ["Retail innovation leaders", "VM tech enthusiasts", "Future-of-retail thinkers"],
-    "Industry Trends & Retail Tech": ["Retail tech community", "Innovation leaders", "Digital retail professionals"],
+    "Visual Merchandising": ["Retail design enthusiasts", "VM community", "Store designers and merchandisers", "Display design professionals"],
+    "Vendor Management & Sourcing": ["Vendor management professionals", "Retail procurement leaders", "Supply chain community", "Sourcing experts"],
+    "Store Design & Retail Tech": ["Retail tech innovators", "Store design community", "Smart retail enthusiasts", "Retail innovation leaders"],
+    "Retail Branding & Display Strategy": ["Brand experience designers", "Retail marketing leaders", "Display strategy community", "In-store experience professionals"],
+    "Vendor Negotiation & Cost Optimization": ["Procurement professionals", "Retail sourcing leaders", "Cost optimization experts", "Retail operations community"],
+    "Sustainable VM & Retail Innovation": ["Sustainable retail advocates", "Green design community", "Retail ESG professionals", "Eco-conscious retailers"],
+    "India Retail Trends & Future of Stores": ["India retail community", "Retail growth leaders", "Future-of-retail thinkers", "Retail expansion professionals"],
 }
 
 BOOST_COMMENTS = [
@@ -231,6 +259,16 @@ Topic: {topic} | Style: {style}
 Opening hook (adapt): "{hook}"
 {session_ctx}
 
+TRENDING CONTEXT (weave in naturally if relevant):
+- India retail added 2,182 stores in FY26; Reliance crossed 20,000 stores
+- Quick commerce (Blinkit, Zepto, JioMart) growing 29% but physical stores still expanding
+- AI/Agentic AI transforming merchandising decisions (McKinsey, BCG reports)
+- Sustainable VM materials & ESG compliance becoming mandatory
+- Tier-2/3 cities driving 40% of new retail consumption
+- AR wayfinding, Neo-Chromatic Minimalism, Sculptural Storytelling are 2026 VM trends
+- Near-shoring & local vendor networks gaining importance
+- Experiential retail: stores becoming experience centers, not just sales points
+
 RULES:
 - First 2 lines MUST create curiosity (shows before "see more")
 - Line breaks every 1-2 sentences. Short punchy paragraphs.
@@ -239,8 +277,8 @@ RULES:
 - 4 hashtags at end: {tags}
 - 2-3 emojis max
 - Write like a real person, NOT a corporate comms team
-- Focus on practical VM insights, vendor management wisdom, or retail display strategy
 - Content should attract recruiters looking for VM/Vendor Management professionals
+- Reference real trends, data points, or industry shifts to build credibility
 
 NEVER: Start with "I", use "In today's fast-paced world", sound like ChatGPT, exceed 250 words, mention HR/recruitment/hiring topics.
 
