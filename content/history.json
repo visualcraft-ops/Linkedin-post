@@ -337,6 +337,17 @@
       "published": true,
       "post_urn": "urn:li:share:7479480069124603905",
       "type": "text"
+    },
+    {
+      "date": "2026-07-05",
+      "session": "evening",
+      "topic": "Quick Commerce vs Physical Retail",
+      "style": "poll",
+      "file": "2026-07-05_evening_quick-commerce-vs-physical-retail.md",
+      "hash": "0ee7bedf6797df045f72c1cb299a9176",
+      "published": true,
+      "post_urn": "urn:li:ugcPost:7479579047463735296",
+      "type": "poll"
     }
   ],
   "hashes": [
@@ -370,6 +381,7 @@
     "62bc91c173ee27f3ae28f9a353e17fa8",
     "2716de24c48228dd0b2343d3ed679fbe",
     "b740f77e9a7befeb43e0aa07856f5850",
-    "0c782276dcc7fe00e2bffbebabeef849"
+    "0c782276dcc7fe00e2bffbebabeef849",
+    "0ee7bedf6797df045f72c1cb299a9176"
   ]
 }
