@@ -348,6 +348,17 @@
       "published": true,
       "post_urn": "urn:li:ugcPost:7479579047463735296",
       "type": "poll"
+    },
+    {
+      "date": "2026-07-06",
+      "session": "morning",
+      "topic": "Visual Merchandising",
+      "style": "actionable_tips",
+      "file": "2026-07-06_visual-merchandising.md",
+      "hash": "a5d6a743a02c1ae5fb179b74e92b5b41",
+      "published": true,
+      "post_urn": "urn:li:share:7479909500150267904",
+      "type": "text"
     }
   ],
   "hashes": [
@@ -382,6 +393,7 @@
     "2716de24c48228dd0b2343d3ed679fbe",
     "b740f77e9a7befeb43e0aa07856f5850",
     "0c782276dcc7fe00e2bffbebabeef849",
-    "0ee7bedf6797df045f72c1cb299a9176"
+    "0ee7bedf6797df045f72c1cb299a9176",
+    "a5d6a743a02c1ae5fb179b74e92b5b41"
   ]
 }
