@@ -425,6 +425,17 @@
       "published": true,
       "post_urn": "urn:li:share:7480961692420456448",
       "type": "text"
+    },
+    {
+      "date": "2026-07-09",
+      "session": "evening",
+      "topic": "AI in Visual Merchandising",
+      "style": "poll",
+      "file": "2026-07-09_evening_ai-in-visual-merchandising.md",
+      "hash": "55a1d6428a72686dad7c0b7a9f58c206",
+      "published": true,
+      "post_urn": "urn:li:ugcPost:7481064981262856192",
+      "type": "poll"
     }
   ],
   "hashes": [
@@ -466,6 +477,7 @@
     "8bd0cd43c8149dfefcb14a3c66796ac4",
     "6d7509cb32d9b92ecf38a92c55f5848f",
     "eb22030b1e7f1533f28574a9358075c8",
-    "fd61995662d036bd131856a8f0803582"
+    "fd61995662d036bd131856a8f0803582",
+    "55a1d6428a72686dad7c0b7a9f58c206"
   ]
 }
