@@ -1019,6 +1019,17 @@
       "published": true,
       "post_urn": "urn:li:share:7490632366265233408",
       "type": "text"
+    },
+    {
+      "date": "2026-08-05",
+      "session": "evening",
+      "topic": "Retail Display Life",
+      "style": "relatable_story",
+      "file": "2026-08-05_evening_retail-display-life.md",
+      "hash": "f75b934520aefbf35e9cda217a565bef",
+      "published": true,
+      "post_urn": "urn:li:share:7490784458569121793",
+      "type": "text"
     }
   ],
   "hashes": [
@@ -1114,6 +1125,7 @@
     "4a5b99402cdfd1895514bc246773d16a",
     "1bf7f3e0c6704e6757ee31fcb6ba80fa",
     "2addfb083691ab6b71c5150d0c5eab88",
-    "de6ee34b4c1151b1b57c906e570c1be3"
+    "de6ee34b4c1151b1b57c906e570c1be3",
+    "f75b934520aefbf35e9cda217a565bef"
   ]
 }
