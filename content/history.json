@@ -1140,6 +1140,17 @@
       "published": true,
       "post_urn": "urn:li:share:7492582559718178817",
       "type": "text"
+    },
+    {
+      "date": "2026-08-11",
+      "session": "morning",
+      "topic": "Vendor Management & Sourcing",
+      "style": "thought_leadership",
+      "file": "2026-08-11_vendor-management-sourcing.md",
+      "hash": "22d5310aa3eb0e168e0472e6b71c71f1",
+      "published": true,
+      "post_urn": "urn:li:share:7492783183449636864",
+      "type": "text"
     }
   ],
   "hashes": [
@@ -1246,6 +1257,7 @@
     "71fb0076a824158696457d9680020a13",
     "0ee7bedf6797df045f72c1cb299a9176",
     "6273fa8ea7eee676a3fd716c271299a0",
-    "527a29d6e5cbeae034fbeec98f64e92f"
+    "527a29d6e5cbeae034fbeec98f64e92f",
+    "22d5310aa3eb0e168e0472e6b71c71f1"
   ]
 }
