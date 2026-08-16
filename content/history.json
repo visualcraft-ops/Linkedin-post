@@ -1250,6 +1250,17 @@
       "published": true,
       "post_urn": "urn:li:share:7494380669595201538",
       "type": "text"
+    },
+    {
+      "date": "2026-08-16",
+      "session": "morning",
+      "topic": "India Retail Trends & Future of Stores",
+      "style": "future_prediction",
+      "file": "2026-08-16_india-retail-trends-future-of-stores.md",
+      "hash": "641616c3cb30c6d8b3957580e701fcdf",
+      "published": true,
+      "post_urn": "urn:li:share:7494589455769538560",
+      "type": "text"
     }
   ],
   "hashes": [
@@ -1366,6 +1377,7 @@
     "5fb5f643350c81a4b2363d3351788133",
     "d69a12e8fb556d7d4cb2f43058ea21c3",
     "8cc25d09fcd7b72ba0831b7f1faa7648",
-    "51b146c5002f74c5d12b8ed4dd0eea27"
+    "51b146c5002f74c5d12b8ed4dd0eea27",
+    "641616c3cb30c6d8b3957580e701fcdf"
   ]
 }
