@@ -1305,6 +1305,17 @@
       "published": true,
       "post_urn": "urn:li:share:7495311471937994753",
       "type": "text"
+    },
+    {
+      "date": "2026-08-18",
+      "session": "evening",
+      "topic": "Vendor Red Flags & Wins",
+      "style": "debate_starter",
+      "file": "2026-08-18_evening_vendor-red-flags-wins.md",
+      "hash": "fd34b8daabaa5d735a3979e1e7751ca3",
+      "published": true,
+      "post_urn": "urn:li:share:7495472647649026048",
+      "type": "text"
     }
   ],
   "hashes": [
@@ -1426,6 +1437,7 @@
     "0ee7bedf6797df045f72c1cb299a9176",
     "7d5e0e04dd22ac9214af599d108338b5",
     "4a5b99402cdfd1895514bc246773d16a",
-    "5bcf8a4bb5172484499a18920e804148"
+    "5bcf8a4bb5172484499a18920e804148",
+    "fd34b8daabaa5d735a3979e1e7751ca3"
   ]
 }
