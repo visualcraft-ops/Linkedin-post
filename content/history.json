@@ -1316,6 +1316,17 @@
       "published": true,
       "post_urn": "urn:li:share:7495472647649026048",
       "type": "text"
+    },
+    {
+      "date": "2026-08-19",
+      "session": "morning",
+      "topic": "Store Design & Retail Tech",
+      "style": "case_study",
+      "file": "2026-08-19_store-design-retail-tech.md",
+      "hash": "f6d6661c5981821982c86e85b7463aab",
+      "published": true,
+      "post_urn": "urn:li:share:7495671787955933184",
+      "type": "text"
     }
   ],
   "hashes": [
@@ -1438,6 +1449,7 @@
     "7d5e0e04dd22ac9214af599d108338b5",
     "4a5b99402cdfd1895514bc246773d16a",
     "5bcf8a4bb5172484499a18920e804148",
-    "fd34b8daabaa5d735a3979e1e7751ca3"
+    "fd34b8daabaa5d735a3979e1e7751ca3",
+    "f6d6661c5981821982c86e85b7463aab"
   ]
 }
