@@ -1360,6 +1360,17 @@
       "published": false,
       "post_urn": "",
       "type": "poll"
+    },
+    {
+      "date": "2026-08-21",
+      "session": "morning",
+      "topic": "Vendor Negotiation & Cost Optimization",
+      "style": "framework",
+      "file": "2026-08-21_vendor-negotiation-cost-optimization.md",
+      "hash": "43c93e0efb830ca880f055f8565bad34",
+      "published": false,
+      "post_urn": "",
+      "type": "text"
     }
   ],
   "hashes": [
@@ -1486,6 +1497,7 @@
     "f6d6661c5981821982c86e85b7463aab",
     "d83155885aa8b5557677a4ab42c12648",
     "2db84381da940a109c69a48099d27424",
-    "0046667f41d3d2929213090c309fc6a3"
+    "0046667f41d3d2929213090c309fc6a3",
+    "43c93e0efb830ca880f055f8565bad34"
   ]
 }
