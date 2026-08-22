@@ -1393,6 +1393,17 @@
       "published": false,
       "post_urn": "",
       "type": "text"
+    },
+    {
+      "date": "2026-08-22",
+      "session": "evening",
+      "topic": "Weekend VM Inspiration",
+      "style": "listicle",
+      "file": "2026-08-22_evening_weekend-vm-inspiration.md",
+      "hash": "9ab63f4c63e0eac3f036b96e53f6d0a2",
+      "published": false,
+      "post_urn": "",
+      "type": "text"
     }
   ],
   "hashes": [
@@ -1522,6 +1533,7 @@
     "0046667f41d3d2929213090c309fc6a3",
     "43c93e0efb830ca880f055f8565bad34",
     "b152e99a6da14f6a4e46c13d86cb09d8",
-    "06865214be588f5c26b9f204f0a16f97"
+    "06865214be588f5c26b9f204f0a16f97",
+    "9ab63f4c63e0eac3f036b96e53f6d0a2"
   ]
 }
