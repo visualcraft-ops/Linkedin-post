@@ -1492,6 +1492,17 @@
       "published": false,
       "post_urn": "",
       "type": "text"
+    },
+    {
+      "date": "2026-08-27",
+      "session": "morning",
+      "topic": "Retail Branding & Display Strategy",
+      "style": "personal_story",
+      "file": "2026-08-27_retail-branding-display-strategy.md",
+      "hash": "b29d927c254094cbbd1345f8b73f41c8",
+      "published": false,
+      "post_urn": "",
+      "type": "text"
     }
   ],
   "hashes": [
@@ -1630,6 +1641,7 @@
     "5bcf8a4bb5172484499a18920e804148",
     "3828c8547d56e1309731a3cb4fd37b74",
     "3603b3460e68692c44c4aa69d494233d",
-    "ecd792e2c30c5d64e95002ae8ed4a17f"
+    "ecd792e2c30c5d64e95002ae8ed4a17f",
+    "b29d927c254094cbbd1345f8b73f41c8"
   ]
 }
