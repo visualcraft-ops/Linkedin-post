@@ -1833,6 +1833,17 @@
       "published": false,
       "post_urn": "",
       "type": "text"
+    },
+    {
+      "date": "2026-09-11",
+      "session": "evening",
+      "topic": "Store Launch Stories",
+      "style": "gratitude_post",
+      "file": "2026-09-11_evening_store-launch-stories.md",
+      "hash": "62bc91c173ee27f3ae28f9a353e17fa8",
+      "published": false,
+      "post_urn": "",
+      "type": "text"
     }
   ],
   "hashes": [
@@ -2002,6 +2013,7 @@
     "ecd792e2c30c5d64e95002ae8ed4a17f",
     "b29d927c254094cbbd1345f8b73f41c8",
     "6e3f79f880d93d25fca186aee8909b36",
-    "4f01ff19dbd06d9f125b054d54114fa9"
+    "4f01ff19dbd06d9f125b054d54114fa9",
+    "62bc91c173ee27f3ae28f9a353e17fa8"
   ]
 }
