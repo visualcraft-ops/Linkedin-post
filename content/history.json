@@ -2009,6 +2009,17 @@
       "published": false,
       "post_urn": "",
       "type": "text"
+    },
+    {
+      "date": "2026-09-19",
+      "session": "evening",
+      "topic": "Weekend VM Inspiration",
+      "style": "listicle",
+      "file": "2026-09-19_evening_weekend-vm-inspiration.md",
+      "hash": "805fd4bca959da47adfde9637507d2bc",
+      "published": false,
+      "post_urn": "",
+      "type": "text"
     }
   ],
   "hashes": [
@@ -2194,6 +2205,7 @@
     "aef2d0caad7122c4065614c7fdba54a2",
     "c95fd12390d4183ea5fa59e77c00d8b1",
     "e8ce765473350e23b164e5c160f9ddbb",
-    "9c46b4f7f7e9ff47afff33a6f948927c"
+    "9c46b4f7f7e9ff47afff33a6f948927c",
+    "805fd4bca959da47adfde9637507d2bc"
   ]
 }
