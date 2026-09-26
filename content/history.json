@@ -2152,6 +2152,17 @@
       "published": false,
       "post_urn": "",
       "type": "text"
+    },
+    {
+      "date": "2026-09-26",
+      "session": "morning",
+      "topic": "Sustainable VM & Retail Innovation",
+      "style": "contrarian_take",
+      "file": "2026-09-26_sustainable-vm-retail-innovation.md",
+      "hash": "2716de24c48228dd0b2343d3ed679fbe",
+      "published": false,
+      "post_urn": "",
+      "type": "text"
     }
   ],
   "hashes": [
@@ -2350,6 +2361,7 @@
     "0a68149772d7a6c8a13a7c3c6789f95c",
     "0ee7bedf6797df045f72c1cb299a9176",
     "c95fd12390d4183ea5fa59e77c00d8b1",
-    "b2bfcea671ec7b2962d95eae5d116f1d"
+    "b2bfcea671ec7b2962d95eae5d116f1d",
+    "2716de24c48228dd0b2343d3ed679fbe"
   ]
 }
