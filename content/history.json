@@ -2361,6 +2361,17 @@
       "published": false,
       "post_urn": "",
       "type": "text"
+    },
+    {
+      "date": "2026-10-05",
+      "session": "evening",
+      "topic": "Quick VM Tip",
+      "style": "micro_content",
+      "file": "2026-10-05_evening_quick-vm-tip.md",
+      "hash": "57f09eeca33c23370fa56c0afe57f5b9",
+      "published": false,
+      "post_urn": "",
+      "type": "text"
     }
   ],
   "hashes": [
@@ -2578,6 +2589,7 @@
     "7c1ca7bfaad7090ba54a49f46059b0d3",
     "908e6b6f74f05485780b74f81eb74ad5",
     "d95a6f2fe3358bcf04221e428b304b41",
-    "5c0758afdb70119f30961fc73836e2dc"
+    "5c0758afdb70119f30961fc73836e2dc",
+    "57f09eeca33c23370fa56c0afe57f5b9"
   ]
 }
