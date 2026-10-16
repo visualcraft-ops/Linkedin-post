@@ -2603,6 +2603,17 @@
       "published": false,
       "post_urn": "",
       "type": "text"
+    },
+    {
+      "date": "2026-10-16",
+      "session": "evening",
+      "topic": "Store Launch Stories",
+      "style": "gratitude_post",
+      "file": "2026-10-16_evening_store-launch-stories.md",
+      "hash": "7a02eebd7ee40278016ead8abe7b9b88",
+      "published": false,
+      "post_urn": "",
+      "type": "text"
     }
   ],
   "hashes": [
@@ -2842,6 +2853,7 @@
     "f8cb3bb3ab751d609f1247c9223b3b10",
     "acc2220c7698943adc9d3893379594d7",
     "0ee7bedf6797df045f72c1cb299a9176",
-    "e7e724e7e50621bb0b5936eac9908048"
+    "e7e724e7e50621bb0b5936eac9908048",
+    "7a02eebd7ee40278016ead8abe7b9b88"
   ]
 }
