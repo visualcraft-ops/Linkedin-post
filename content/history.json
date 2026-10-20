@@ -2680,6 +2680,17 @@
       "published": false,
       "post_urn": "",
       "type": "text"
+    },
+    {
+      "date": "2026-10-20",
+      "session": "morning",
+      "topic": "Vendor Management & Sourcing",
+      "style": "thought_leadership",
+      "file": "2026-10-20_vendor-management-sourcing.md",
+      "hash": "12ae1ea838f3b5ff49111bf47f721ec3",
+      "published": false,
+      "post_urn": "",
+      "type": "text"
     }
   ],
   "hashes": [
@@ -2926,6 +2937,7 @@
     "9c46b4f7f7e9ff47afff33a6f948927c",
     "1b860ed39f9a79dbf31bf41774eabb2c",
     "7a02eebd7ee40278016ead8abe7b9b88",
-    "9b25696d3f8217cab0f2112b572be7a7"
+    "9b25696d3f8217cab0f2112b572be7a7",
+    "12ae1ea838f3b5ff49111bf47f721ec3"
   ]
 }
