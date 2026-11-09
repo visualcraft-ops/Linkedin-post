@@ -3120,6 +3120,17 @@
       "published": false,
       "post_urn": "",
       "type": "poll"
+    },
+    {
+      "date": "2026-11-09",
+      "session": "morning",
+      "topic": "Visual Merchandising",
+      "style": "actionable_tips",
+      "file": "2026-11-09_visual-merchandising.md",
+      "hash": "cfb6a544f506306da8b5953232a4315a",
+      "published": false,
+      "post_urn": "",
+      "type": "text"
     }
   ],
   "hashes": [
@@ -3406,6 +3417,7 @@
     "6cde077760b2f5818931e92a69f65ec2",
     "7c1ca7bfaad7090ba54a49f46059b0d3",
     "00c1a09392572c6e437331c8610e965c",
-    "a0ed8c12c078da8a382a0a8f91d73444"
+    "a0ed8c12c078da8a382a0a8f91d73444",
+    "cfb6a544f506306da8b5953232a4315a"
   ]
 }
