@@ -3406,6 +3406,17 @@
       "published": false,
       "post_urn": "",
       "type": "text"
+    },
+    {
+      "date": "2026-11-22",
+      "session": "morning",
+      "topic": "India Retail Trends & Future of Stores",
+      "style": "future_prediction",
+      "file": "2026-11-22_india-retail-trends-future-of-stores.md",
+      "hash": "31682c4a94e193addac89090e4791980",
+      "published": false,
+      "post_urn": "",
+      "type": "text"
     }
   ],
   "hashes": [
@@ -3718,6 +3729,7 @@
     "f1d8ec0ccebd4d8dccc971769c438d33",
     "b152e99a6da14f6a4e46c13d86cb09d8",
     "a2ea07349eb63b5265ad3183461a0d49",
-    "7c1ca7bfaad7090ba54a49f46059b0d3"
+    "7c1ca7bfaad7090ba54a49f46059b0d3",
+    "31682c4a94e193addac89090e4791980"
   ]
 }
