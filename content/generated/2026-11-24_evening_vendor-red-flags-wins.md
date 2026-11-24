@@ -5,20 +5,20 @@ style: debate_starter
 session: evening
 ---
 
-Real talk about vendor red flags & wins.
+Stop scrolling.
 
-Nobody posts about the vendor failures. So let me go first.
+If you're in retail VM, this will save you hours.
 
-I once spent 2 weeks planning the perfect store display.
-The fixture vendor delivered wrong specs 2 days before launch.
+After 5+ store launches, here's my cheat sheet for vendor red flags & wins:
 
-The fix? A backup vendor list and a 24-hour turnaround plan.
-We launched on time. Customers never knew.
+→ Start with your customer's eye level
+→ Change displays every 14 days (not when you feel like it)
+→ Brief your vendors with visual references, not just text
+→ Measure footfall before/after every display change
 
-Result: Lesson learned — always have Plan B vendors.
+The stores that win aren't doing anything revolutionary.
+They're doing the basics consistently.
 
-What's a vendor challenge that taught you something? 👇
+Which one do you struggle with most? 👇
 
-#VendorManagement #VisualMerchandising #StoreLaunch #RetailTips
-
-Calling all display design professionals 👆
+#VisualMerchandising #VendorManagement #StoreOperations #RetailTips
