@@ -3483,6 +3483,17 @@
       "published": false,
       "post_urn": "",
       "type": "text"
+    },
+    {
+      "date": "2026-11-25",
+      "session": "evening",
+      "topic": "Retail Display Life",
+      "style": "relatable_story",
+      "file": "2026-11-25_evening_retail-display-life.md",
+      "hash": "d8e5d75a86582774b7e495b8f17d5823",
+      "published": false,
+      "post_urn": "",
+      "type": "text"
     }
   ],
   "hashes": [
@@ -3802,6 +3813,7 @@
     "493e2b8b352bd7e4e0ba68ec55ce39be",
     "acd85da254b1d134e06df24727f96303",
     "c02ef3b70a07fb22e8830a0ed8818ddf",
-    "ab1974996bd51cba344fb4e3b08f2285"
+    "ab1974996bd51cba344fb4e3b08f2285",
+    "d8e5d75a86582774b7e495b8f17d5823"
   ]
 }
